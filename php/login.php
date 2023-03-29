@@ -5,13 +5,41 @@ if (isset($_SESSION['uid'])){
     //TODO: if connected return to main page
 }
 session_destroy();
-require('../inc/db_link.inc.php');
+require('../inc/db_functions.inc.php');
 use DB\DBLink;
+use Trasis\User;
+use Trasis\UserManagement;
+
 
 
 $message = "";
-$bdd = DBLink::connect2db( $message);
+$bdd = DBLink::connect2db(MYDB, $message);
+$user= new User();
+$um = new UserManagement();
+// déclaration des données
+$email = isset($_POST['courriel']) ? $_POST['courriel'] : null;
+$mdp = isset($_POST['mdp']) ? $_POST['mdp'] : null;
 
+$msg = 'error: ';
+
+// vérifie si l'adresse mail existe
+
+
+if ($email != null && $mdp!=null && $um->existsInDB($email,$msg)) {
+    //TODO: get user password;
+    $resultstring = "wow a wonderful password";
+    if (password_verify($mdp, $resultstring)) {
+        //TODO: get uid;
+        $userId = 1;
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION['uid'] = $userId;
+        $bdd = DBLink::disconnect($bdd);
+        //TODO: replace to mainpage
+        header('Location: mainpage.php');
+    }
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -57,13 +85,13 @@ $bdd = DBLink::connect2db( $message);
             <input class="champs" placeholder="Password*" name="mdp" type="password">
         </article>
         <?php
-        /*
+
         if ($email != null) {
-            if ($count != 1) {
-                echo '<p class="errormess">Il y a pas de compte pour cette adresse mail</p>';
-            } elseif (!password_verify($mdp, $resultstring)) echo '<p class="errormess">le mot de passe est incorrect</p>';
+            if (!$um->existsInDB($email,$msg)) {
+                echo '<p class="errormess">no account for this email</p>';
+            } elseif (!password_verify($mdp, $resultstring)) echo '<p class="errormess">bad password</p>';
         }
-        */
+
         ?>
         <article>
             <button type="submit" class="buttinsc" name="buttco">Login</button>
