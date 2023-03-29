@@ -15,10 +15,10 @@ class DBLink {
      * @var string $message message to return to the user if error, will be concatenated with PDO message
      * @return PDO|false pdo object | error message if error
      */
-    public static function connect2db(&$message){
+    public static function connect2db($base, &$message){
         try {
 
-            $link = new PDO('mysql:host=' . MYHOST . ';dbname=' . MYDB . ';charset=UTF8', MYUSER, MYPASS);
+            $link = new PDO('mysql:host=' . MYHOST . ';dbname=' . $base . ';charset=UTF8', MYUSER, MYPASS);
             $link->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
             $link->exec("set names utf8");
             $link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
