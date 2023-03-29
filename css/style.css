@@ -40,3 +40,117 @@ li a {
     text-decoration: none;
     color: rgb(0, 40, 76);
 }
+
+/*
+-------------------------------------
+            login
+------------------------------------
+ */
+.co {
+    height:100%;
+    width:100%;
+    display:flex;
+    justify-content:flex-end}
+
+.panelco>section {
+    font-family:Montserrat, sans-serif;
+    background-color:#FFF;
+    text-align:center;
+    width:100%;
+    box-shadow:.125rem .125rem .3125rem;
+    line-height:1.5625rem;
+    color:#000;
+    flex-direction:column;
+    justify-content:center;
+    margin:0;
+    padding:1.875rem 5rem}
+
+.panelco {
+    margin-right:0;
+    margin-left:10%;
+    display:flex;
+    flex-grow:1;
+    width:100%;
+    justify-content:flex-end}
+.panelco h2 {
+    margin-top:10%;
+}
+.logoco {
+    display:flex;
+    justify-content:flex-start;
+    margin-left:0;
+    margin-right:100%;
+    width:50%;
+    height:auto;
+    min-width:30px;
+    padding:2%}
+.logocon{
+
+    width:10em;
+}
+.textcdo {
+    width:80%;
+    margin-top:20%;
+    margin-left:10%;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color:#FFF}
+
+.textcdo>h3 {
+    font-weight:750;
+    font-size:1.5rem}
+
+.textco {
+    margin-right:0;
+    margin-left:0;
+    display:flex;
+    flex-grow:1;
+    justify-content:flex-start;
+    width:130%}
+
+.infosupco {
+    position:absolute;
+    bottom:25px;
+    color:#ffff;
+    font-weight:500;
+    left:3%;
+    right:45%;
+    font-size:12px;
+    display:flex;
+    justify-content:space-between;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-bottom: 1em;
+}
+
+
+
+
+.buttinsc {
+    border-radius:.2rem;
+    background-color:#4019dd;
+    color:#FFF;
+    font-family:Montserrat, sans-serif;
+    font-weight:500;
+    border-color:#4019dd;
+    padding:.5rem 1rem;
+    margin-top: 2em}
+
+.buttoubl {
+    border-radius:.2rem;
+    font-family:Montserrat, sans-serif;
+    font-weight:400;
+    background-color:#F5F5F5;
+    border-color:#000;
+    margin-top: 2em;
+    padding:.5rem 1rem}
+.buttoubl:hover {
+    background-color:#D3D3D3}
+.champs {
+    border-radius:.1rem;
+    background-color:rgba(238,238,238,.692);
+    width:100%;
+    margin-top:2em;
+    border-color:#fff;
+    border-style:none;
+    padding:.5rem}
+.courriel{
+    height: auto}
