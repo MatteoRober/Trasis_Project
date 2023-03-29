@@ -1,4 +1,4 @@
 <?php
 $title = "Trasis - Home Page";
-include '../inc/header.php'
+include '../inc/header.inc.php'
 ?>
