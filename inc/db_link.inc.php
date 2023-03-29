@@ -11,9 +11,9 @@ use PDOException;
  */
 class DBLink {
     /**
-     * Se connecte à la base de données
-     * @var string $message ensemble des messages à retourner à l'utilisateur, séparés par un saut de ligne
-     * @return PDO|false Objet de liaison à la base de données ou false si erreur
+     * connect to database
+     * @var string $message message to return to the user if error, will be concatenated with PDO message
+     * @return PDO|false pdo object | error message if error
      */
     public static function connect2db($base, &$message){
         try {
@@ -30,8 +30,8 @@ class DBLink {
     }
 
     /**
-     * Déconnexion de la base de données
-     * @var PDO $link Objet de liaison à la base de données
+     * disconnect from database
+     * @var PDO $link database link object
      */
     public static function disconnect (&$link) {
         $link = null;
