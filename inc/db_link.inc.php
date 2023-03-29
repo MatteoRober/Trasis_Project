@@ -37,5 +37,4 @@ class DBLink {
         $link = null;
     }
 }
-
 ?>
