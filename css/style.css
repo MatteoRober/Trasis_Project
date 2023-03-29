@@ -1,0 +1,42 @@
+html, body {
+    margin: 0;
+    padding: 0
+}
+
+header, body {
+    font-family: Calibri, sans-serif;
+    font-weight: bold;
+    color: rgb(0, 40, 76);
+}
+
+header {
+    font-size: 1.3rem;
+    width: 100%;
+}
+
+.header-logo {
+    text-align: center;
+    width: 100%;
+}
+
+.header-logo img {
+    max-width: 400px;
+    height: auto;
+}
+
+nav {
+    text-decoration: none;
+    width: 100%;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+}
+
+li a {
+    text-decoration: none;
+    color: rgb(0, 40, 76);
+}
