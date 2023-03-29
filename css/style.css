@@ -40,3 +40,50 @@ li a {
     text-decoration: none;
     color: rgb(0, 40, 76);
 }
+
+
+
+/* Trainings-overview */
+.trainingCard{
+    background-color: #56779a;
+    border-radius: 0.8rem;
+    text-align: center;
+    line-height: 200%;
+    width: 30%;
+    margin-bottom: 1%;
+    padding: 1rem;
+}
+.trainingCard h2{
+    color: white;
+    font-size: 1.1rem;
+    margin-top: 0;
+    padding-left: 0;
+}
+.trainingCard h3{
+    font-family: Calibri, sans-serif;
+    font-size: 1.1rem;
+}
+.trainingCard a{
+    font-family: Calibri, sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: #00284C;
+    border-radius: 0;
+    border-style: none;
+    width: 100%;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
+}
+.trainingCard a:hover{
+    background-color: #fcb040;
+}
+
+.flex-trainigscards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
