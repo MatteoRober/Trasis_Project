@@ -1,17 +1,8 @@
 <?php
 $title = 'Accreditations';
 include '../inc/header.php';
+include "dashboard_nav.php";
 ?>
-<nav>
-    <a href="dashboard_training.php">My courses</a>
-    <a href="dashboard_summary.php">Summary completed courses</a>
-    <a href="dashboard_progress.php">Progress of training courses</a>
-    <a href="#">Accreditations</a>
-    <a href="dashboard_expiringTraining.php">Expiring training courses</a>
-    <?php
-    echo '<a href="dashboard_logs.php">Logs</a>';
-    ?>
-</nav>
 <main>
     <h1>Accreditations</h1>
     <table>
