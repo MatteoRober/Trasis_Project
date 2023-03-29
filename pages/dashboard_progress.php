@@ -1,15 +1,7 @@
 <?php
+$title = 'Progress of training courses';
+include '../inc/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard - Progress</title>
-</head>
-<body>
-    <?php
-    include '../inc/header.php';
-    ?>
     <nav>
         <a href="dashboard_training.php">My courses</a>
         <a href="dashboard_summary.php">Summary completed courses</a>
@@ -29,19 +21,17 @@
                 <th>Duration left</th>
             </tr>
             <?php
-                //For each course the user haven't completed yet, display the course title, duration and duration remaining
-                echo'<tr>';
-                for () {
-                    echo '<td></td><br>
-                          <td></td><br>
-                          <td></td><br>';
-                }
-                echo '</tr>';
+            //For each course the user haven't completed yet, display the course title, duration and duration remaining
+            echo '<tr>';
+            for () {
+                echo '<td></td><br>
+                      <td></td><br>
+                      <td></td><br>';
+            }
+            echo '</tr>';
             ?>
         </table>
     </main>
-    <?php
-    include '../inc/footer.php';
-    ?>
-</body>
-</html>
+<?php
+include '../inc/footer.php';
+?>

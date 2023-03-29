@@ -1,15 +1,7 @@
 <?php
+$title = 'Expiring training courses';
+include '../inc/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard - Expiring training courses</title>
-</head>
-<body>
-    <?php
-    include '../inc/header.php';
-    ?>
     <nav>
         <a href="dashboard_training.php">My courses</a>
         <a href="dashboard_summary.php">Summary completed courses</a>
@@ -31,7 +23,7 @@
             </tr>
             <?php
             //For each course the user have completed and have an expiration date, display the course details in a table row
-            echo'<tr>';
+            echo '<tr>';
             for () {
                 echo '<td></td><br>
                       <td></td><br>
@@ -42,7 +34,6 @@
             ?>
         </table>
     </main>
-    <?php
-    include '../inc/footer.php';
-    ?>
-</body>
+<?php
+include '../inc/footer.php';
+?>

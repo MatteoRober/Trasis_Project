@@ -1,15 +1,7 @@
 <?php
+$title = 'Logs';
+include '../inc/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard - Logs</title>
-</head>
-<body>
-    <?php
-    include '../inc/header.php';
-    ?>
     <nav>
         <a href="dashboard_training.php">My courses</a>
         <a href="dashboard_summary.php">Summary completed courses</a>
@@ -22,8 +14,6 @@
         <h1>Logs</h1>
 
     </main>
-    <?php
-    include '../inc/footer.php';
-    ?>
-</body>
-</html>
+<?php
+include '../inc/footer.php';
+?>
