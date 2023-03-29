@@ -5,6 +5,8 @@
     <title><?php echo $title?></title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="icon" type="image/png" href="../pics/trasis_icon.png">
+
+     <script src="../js/script.js"></script>
 </head>
 <body>
 <header>
@@ -16,7 +18,7 @@
             <li><a href="">Home</a></li>
             <li><a href="">Dashboard</a></li>
             <li></li>
-            <li><a href="../php/trainings-overview.php">Trainings</a></li>
+            <li><a href="../php/trainings-overview.php" id="training">Trainings</a></li>
             <li><a href="">Logs</a></li>
         </ul>
     </nav>

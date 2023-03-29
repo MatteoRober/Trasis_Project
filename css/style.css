@@ -81,7 +81,7 @@ li a {
     background-color: #fcb040;
 }
 
-.flex-trainigscards{
+.flex-trainingcards{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
