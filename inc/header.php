@@ -16,7 +16,7 @@
             <li><a href="">Home</a></li>
             <li><a href="">Dashboard</a></li>
             <li></li>
-            <li><a href="">Trainings</a></li>
+            <li><a href="../php/trainings-overview.php">Trainings</a></li>
             <li><a href="">Logs</a></li>
         </ul>
     </nav>
