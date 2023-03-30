@@ -49,7 +49,7 @@ if(isset($_POST['validation'])) {
 }
 
 $title = "Login Page";
-require('inc/headerD.inc.php');
+require('inc/headerC.inc.php');
 
 echo $message;
 ?>
