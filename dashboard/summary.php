@@ -1,6 +1,6 @@
 <?php
 $title = 'Summary completed courses';
-include '../inc/header.inc.php';
+include '../inc/headerC.inc.php';
 ?>
 <nav>
     <a href="training.php">My courses</a>
@@ -19,5 +19,5 @@ include '../inc/header.inc.php';
     ?>
 </main>
 <?php
-include '../inc/footer.inc.php';
+include '../inc/footerC.inc.php';
 ?>
