@@ -40,7 +40,7 @@ if(isset($_POST['validation'])) {
             $message .= "Incorrect credentials.";
             $noError = false;
         } else {
-            $_SESSION['user'] = $mail;
+            $_SESSION['user'] = $user->__get("user_id");
             header('Location: index.php');
         }
     }

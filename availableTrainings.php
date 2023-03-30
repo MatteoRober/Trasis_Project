@@ -4,10 +4,13 @@ session_start();
 require('inc/db_functions.inc.php');
 
 use Trasis\TrainingManagement;
+use Trasis\TrainingStatus;
+use Trasis\TrainingStatusManagement;
 Use Trasis\UserManagement;
 $um = new UserManagement();
 $tm = new TrainingManagement();
-$id = 4; // TODO replace with SESSION_["user"]
+$tsm = new TrainingStatusManagement();
+$id = $_SESSION['user'];
 $error = "";
 $user = $um->getUserById($id,$error);
 
@@ -32,7 +35,7 @@ include 'inc/header.inc.php';
 
                 echo
                 '<article>
-                    <img src="pics/1+1=3.jpeg" alt="1+1=3">
+                    <div class = "lilbar activebar"></div>
                     <h3>  ' .$title.' </h3>
                     <span>duration:'.$duration.' hours</span>
                     <span>validity:'.$validity.' days</span>
@@ -55,20 +58,35 @@ include 'inc/header.inc.php';
             $title = $training->__get('name');
             $duration = $training->__get('duration');
             $validity = $training->__get('validity');
-
+            $access = $um->hasAccessToTraining($id,$tid,$error);
+            $lilbar = $access? "toactivebar":"inactivebar";
             echo
                 '<article>
-                    <img src="pics/1+1=3.jpeg" alt="1+1=3">
+                    <div class ="lilbar '.$lilbar.'"></div>
                     <h3>  ' .$title.' </h3>
                     <span>duration:'.$duration.' hours</span>
                     <span>validity:'.$validity.' days</span>
+                    <form action="'. htmlentities($_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']) .'" method="post">
                    ';
-            if($um->hasAccessToTraining($id,$tid,$error)){
-                echo'<button>join Training</button>';
+            if($access){
+                echo'<button name="jointraining'.$i.'">join Training</button>';
             }else{
-                echo'<button>Ask to join Training</button>';
+                echo'<button name="asktraining'.$i.'">Ask to join Training</button>';
             }
-                echo'</article>';
+                echo'</form>
+                </article>';
+            $ts = new TrainingStatus();
+            if(isset($_POST["jointraining".$i])) {
+                $ts->__set('done', 0);
+                $ts->__set('approved', 1);
+                $tsm->storeTrainingstatus($ts, $id, $tid, $error);
+            }
+            if(isset($_POST["asktraining".$i])){
+                $ts->__set('done',0);
+                $ts->__set('approved',0);
+                $tsm->storeTrainingstatus($ts, $id, $tid, $error);
+            }
+
         }
         ?>
     </section>

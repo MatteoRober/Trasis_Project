@@ -41,6 +41,12 @@ class UserManagement {
         $bdd = null;
         try {
             $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM authorises WHERE training_id = :training_id");
+            $stmt->bindValue(":training_id",$training_id);
+            $stmt->execute();
+            if(!$stmt->fetch()){
+                return true;
+            }
             $stmt = $bdd->prepare("SELECT * FROM `trasis_training` 
             JOIN authorises ON trasis_training.training_id = authorises.training_id 
             JOIN trasis_function on trasis_function.function_id = authorises.function_id 
@@ -187,7 +193,6 @@ class Training {
  */
 class TrainingManagement
 {
-
 
     public function existsInDB($training_id, &$message)
     {
@@ -458,5 +463,27 @@ class TrainingStatus {
  * @version 1.0
  */
 class TrainingStatusManagement {
-
+    public function storeTrainingstatus($trainingstatus,$userid,$trainingid,$message){
+        $noError = false;
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("INSERT INTO trasis_training_status ( done, approved, training_id, user_id) VALUES (:done, :approved, :training_id, :user_id)");
+            $stmt->bindValue(':done', $trainingstatus->__get('done'));
+            $stmt->bindValue(':approved', $trainingstatus->__get('approved'));
+            $stmt->bindValue(':training_id', $trainingid);
+            $stmt->bindValue(':user_id', $userid);
+            if ($stmt->execute()) {
+                $message .= "TrainingStatus created successfully.<br>";
+                $noError = true;
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $message;
+    }
 }
