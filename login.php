@@ -4,7 +4,7 @@ session_start();
 require('inc/db_functions.inc.php');
 use Trasis\User;
 use Trasis\UserManagement;
-use DB\DBLink;
+
 if(isset($_SESSION['user'])) {
     header('Location: index.php');
 }
@@ -20,6 +20,7 @@ $user = new User();
 // variables
 $mail = "";
 $password = "";
+
 // form
 if(isset($_POST['validation'])) {
     $mail = htmlentities($_POST['mail']);
@@ -45,35 +46,29 @@ if(isset($_POST['validation'])) {
         }
     }
 }
+
+$title = "Login Page";
+include 'inc/headerD.inc.php';
 ?>
-    <!DOCTYPE HTML>
-    <html lang="fr" class="co">
 
-    <head>
-        <meta Charset="utf-8">
-        <title>[trasis] login</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="shortcut icon" href="pics/trasis_icon.ico">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap" rel="stylesheet">
-        <style>
-            body {
-                background: no-repeat center fixed url("pics/trasis_2022_web-14.webp");
-                background-size: cover;
-                height: auto;
-            }
-        </style>
-    </head>
+<!-- <img class="" src="pics/h_trasis_logo.png" alt="Logo trasis"> -->
+<div class="loginPannel">
+    <div class="loginBackground"></div>
+    <div class="formBox">
+        <img class="loginFormLogo" src="pics/trasis_icon.png" alt="Logo trasis">
+        <h1>Log in into Trasis LMS</h1>
+        <form  action="<?php echo htmlentities($_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']); ?>" method="post">
+            <label for="mail">Mail</label>
+            <input type="email" name="mail" id="mail" placeholder="Mail" autocomplete="off" value="<?php echo $mail ?>">
+            <label for="password">Password</label>
+            <input type="password"  name="password" id="password" placeholder="Password" autocomplete="off">
+            <p class=""><?php echo $message?></p>
+            <button class="" name="validation">Log in</button>
+            <button class="" name="validation">Forgot password</button>
+        </form>
+    </div>
+</div>
 
-<body class="co">
-<img class="logoco" src="pics/h_trasis_logo.png" alt="Logo trasis">
-<section class="panelco">
-    <form  action="<?php echo htmlentities($_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']); ?>" method="post">
-        <img class="logocon" src="pics/trasis_icon.png" alt="Logo trasis">
-        <input class="champs courriel" type="email" name="mail" id="mail" placeholder="Mail*" autocomplete="off" value="<?php echo $mail ?>">
-        <input type="password" class ="champs motdepasse" name="password" id="password" placeholder="Password*" autocomplete="off">
-        <p class="errormess"><?php echo $message?></p>
-        <button class="buttinsc" name="validation">Log in</button>
-        <button class="buttoubl" name="validation">Forgot password</button>
-    </form>
-    </body>
-</html>
+<?php
+include 'inc/footerD.inc.php';
+?>

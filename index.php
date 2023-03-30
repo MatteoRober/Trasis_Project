@@ -32,12 +32,12 @@ if(isset($_POST['validation'])) {
 
         $email->SMTPDebug = 2;                                       // Enable verbose debug output
         $email->isSMTP();                                            // Set mailer to use SMTP
-        $email->Host       = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+        $email->Host       = 'smtp.helmo.be';  // Specify main and backup SMTP servers
         $email->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $email->Username   = 'user@example.com';                     // SMTP username
-        $email->Password   = 'secret';                               // SMTP password
+        $email->Username   = 'smtp@helmo.be';                     // SMTP username
+        $email->Password   = 'smtp';                               // SMTP password
         $email->SMTPSecure = 'tls';                                  // Enable TLS encryption, [ICODE]ssl[/ICODE] also accepted
-        $email->Port       = 587;
+        $email->Port       = 25;
 
         $email->setFrom('no-reply@trasis.be');
         $email->addAddress("n.docquier@student.helmo.be");
@@ -57,17 +57,17 @@ include 'inc/headerC.inc.php';
 echo $message;
 ?>
 
-<form method="post">
-    <button name="validation">Send mail</button>
-</form>
-
 <main>
     <h1 class="hover">Enjoying <span>by training</span></h1>
     <div class="home-pic">
         <img src="pics/home_picture.jpg" alt="">
     </div>
+
+    <form method="post">
+        <button name="validation">Send mail</button>
+    </form>
 </main>
 
 <?php
-include 'inc/footer.inc.php'
+include 'inc/footerC.inc.php'
 ?>
