@@ -2,6 +2,8 @@
 session_start();
 
 require('inc/db_functions.inc.php');
+
+use Trasis\LogsManagement;
 use Trasis\User;
 use Trasis\UserManagement;
 
@@ -40,7 +42,9 @@ if(isset($_POST['validation'])) {
             $message .= "Incorrect credentials.";
             $noError = false;
         } else {
-            $_SESSION['user'] = $mail;
+            $lm = new LogsManagement();
+            $lm->addlog("user connexion: ".$user->__get('mail'),$message);
+            $_SESSION['user'] = $user->__get("user_id");
             header('Location: index.php');
         }
     }
@@ -57,13 +61,13 @@ include 'inc/header.inc.php';
         <img class="loginFormLogo" src="pics/trasis_icon.png" alt="Logo trasis">
         <h1>Log in into Trasis LMS</h1>
         <form  action="<?php echo htmlentities($_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']); ?>" method="post">
-            <label for="mail">Mail</label>
+            <label for="mail" hidden>Mail</label>
             <input type="email" name="mail" id="mail" placeholder="Mail" autocomplete="off" value="<?php echo $mail ?>">
-            <label for="password">Password</label>
+            <label for="password" hidden>Password</label>
             <input type="password"  name="password" id="password" placeholder="Password" autocomplete="off">
             <p class=""><?php echo $message?></p>
-            <button class="" name="validation">Log in</button>
-            <button class="" name="validation">Forgot password</button>
+            <button class="submit" name="validation">Log in</button>
+            <a class="forgot" href="#">Forgot password ?</a>
         </form>
     </div>
 </div>

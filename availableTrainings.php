@@ -2,21 +2,46 @@
 session_start();
 
 require('inc/db_functions.inc.php');
+include 'inc/header.inc.php';
 
+
+use Trasis\LogsManagement;
 use Trasis\TrainingManagement;
+use Trasis\TrainingStatus;
+use Trasis\TrainingStatusManagement;
 Use Trasis\UserManagement;
+if(!isset($_SESSION['user'])) {
+    header("location: login.php");
+}
 $um = new UserManagement();
 $tm = new TrainingManagement();
-$id = 4; // TODO replace with SESSION_["user"]
+$tsm = new TrainingStatusManagement();
+$id = $_SESSION['user'];
 $error = "";
 $user = $um->getUserById($id,$error);
 
 $title = "Trainings";
-include 'inc/header.inc.php';
-?>
 
-<h1 class ="centered_titles push_top">My Trainings</h1>
-<div class = "trainings_form">
+$ts = new TrainingStatus();
+if(isset($_POST["jointraining"])) {
+    $ts->__set('done', 0);
+    $ts->__set('approved', 1);
+    $tsm->storeTrainingstatus($ts, $id, $_POST["form_id"], $error);
+    $lm = new LogsManagement();
+    $lm->addlog("user joined training: ".$user->__get('mail')." in group id:".$_POST["form_id"],$error);
+}
+if(isset($_POST["asktraining"])){
+    $ts->__set('done',0);
+    $ts->__set('approved',0);
+    $tsm->storeTrainingstatus($ts, $id, $_POST["form_id"], $error);
+    $lm = new LogsManagement();
+    $lm->addlog("user asked training: ".$user->__get('mail')." for group id:".$_POST["form_id"],$error);
+}
+?>
+<main>
+    <h1>Trainings</h1>
+    <h2 class ="centered_titles push_top">My Trainings</h2>
+    <div class = "trainings_form">
         <section>
             <?php
             //TODO: get all my trainings
@@ -31,49 +56,55 @@ include 'inc/header.inc.php';
                 $validity = $training->__get('validity');
 
                 echo
-                '<article>
-                    <img src="pics/1+1=3.jpeg" alt="1+1=3">
+                    '<article>
+                    <div class = "lilbar activebar"></div>
                     <h3>  ' .$title.' </h3>
-                    <span>duration:'.$duration.' hours</span>
-                    <span>validity:'.$validity.' days</span>
+                    <p>duration:'.$duration.' hours</p>
+                    <p>validity:'.$validity.' days</p>
                 </article>';
             }
             ?>
         </section>
-</div>
-<h2 class ="centered_titles push_top">Available trainings</h2>
-<div class = "trainings_form">
-    <section>
-        <?php
-        //TODO: get all my trainings
+    </div>
+    <h2 class ="centered_titles push_top">Available trainings</h2>
+    <div class = "trainings_form">
+        <section>
+            <?php
+            $error = "";
+            $trainings = $tm->getNotRegisteredTrainingsForUserWithId($id,$error);
+            for($i = 0;$i<count($trainings);$i++){
+                $training = $trainings[$i];
+                $tid = $training->__get('training_id');
+                $title = $training->__get('name');
+                $duration = $training->__get('duration');
+                $validity = $training->__get('validity');
+                $access = $um->hasAccessToTraining($id,$tid,$error);
+                $lilbar = $access? "toactivebar":"inactivebar";
+                echo
+                    '<article>
+                    <div class ="lilbar '.$lilbar.'"></div>
+                    <h2>  ' .$title.' </h2>
+                    <span>duration:</span>
+                    <span>'.$duration.' hours</span>
+                    <br>
+                    <span>validity:</span>
+                    <span>'.$validity.' days</span>
+                    <form class ="buttgroupeprepair" action="' .'" method="post">
+                    <input type="hidden" name="form_id" value="'.$tid. '"/>';
+                if($access){
+                    echo'<button type="submit" class = "buttgroupe" name="jointraining">join Training</button>';
+                }else{
+                    echo'<button type="submit" class = "buttgroupe" name="asktraining">Ask to join Training</button>';
+                }
+                echo'</form>
+                </article>';
 
-        $error = "";
-        $trainings = $tm->getNotRegisteredTrainingsForUserWithId($id,$error);
-        for($i = 0;$i<count($trainings);$i++){
-            $training = $trainings[$i];
-            $tid = $training->__get('training_id');
-            $title = $training->__get('name');
-            $duration = $training->__get('duration');
-            $validity = $training->__get('validity');
 
-            echo
-                '<article>
-                    <img src="pics/1+1=3.jpeg" alt="1+1=3">
-                    <h3>  ' .$title.' </h3>
-                    <span>duration:'.$duration.' hours</span>
-                    <span>validity:'.$validity.' days</span>
-                   ';
-            if($um->hasAccessToTraining($id,$tid,$error)){
-                echo'<button>join Training</button>';
-            }else{
-                echo'<button>Ask to join Training</button>';
             }
-                echo'</article>';
-        }
-        ?>
-    </section>
-</div>
-
+            ?>
+        </section>
+    </div>
+</main>
 <?php
 include 'inc/footer.inc.php';
 ?>
