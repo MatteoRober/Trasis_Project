@@ -35,7 +35,6 @@ $uid = $_SESSION['user_id'];
                       <td>' . $training->__GET("duration") . '</td><br>
                       <td>' . $training->__GET("validity") . '</td><br>
                       <td></td><br>';
-                //TODO logical condition to check if the course is planned or completed
                 //If the course is planned, display "Planned" in the status column, otherwise display "Completed"
                 $message = "";
                 if (!$trainingManager->isDone($training->__GET("training_id"), $uid, $message)) {

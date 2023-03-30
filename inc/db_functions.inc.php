@@ -427,7 +427,7 @@ class TeamManagement {
         $bdd = null;
         try {
             $bdd = DBLink::connect2db(MYDB, $message);
-            $stmt = $bdd->prepare();
+            $stmt = $bdd->prepare("SELECT p.user_id FROM trasis_team tt JOIN participates p ON tt.team_id = p.team_id WHERE tt.user_id = :user_id");
             $stmt->bindValue(':user_id', $user_id);
             if ($stmt->execute()) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\User");
