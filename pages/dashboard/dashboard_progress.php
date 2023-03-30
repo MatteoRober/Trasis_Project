@@ -21,7 +21,7 @@ include 'dashboard_nav.php';
             <?php
             $uid = $_SESSION['user_id'];
             $trainingManager = new TrainingManagement();
-            $trainings = $trainingManager->getAllTrainingsForUserWithId($uid);
+            $trainings = $trainingManager->getNotDoneTrainingsForUserWithId($uid);
             //For each course the user haven't completed yet, display the course title, duration and duration remaining
             echo '<tr>';
             foreach ($trainings as $training) {
