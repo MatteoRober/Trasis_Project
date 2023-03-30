@@ -1,16 +1,10 @@
 <?php
+session_start();
 
-$title = "Trasis - Manage Users";
-include '../../inc/header.inc.php';
+$title = "Manage Users";
+include 'inc/header.inc.php';
 
 ?>
-<style>
-    /** ADMIN PAGE **/
-    #addUserForm{
-        display: flex;
-        flex-direction: column;
-    }
-</style>
 <!--form to enter the information of the new user
 // Submit button => sends data to the database
 // Cancel button => redirects to the admin_manage_users.php page => makes all the form fields empty-->
@@ -32,10 +26,7 @@ include '../../inc/header.inc.php';
     <input type="button" id="cancel" value="Cancel" onclick="clearForm()"> <!--via php empty the form fields-->
 </form>
 
-
-
-
 <?php
-include '../../inc/footer.inc.php'
+include 'inc/footer.inc.php'
 ?>
 

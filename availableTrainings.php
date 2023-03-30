@@ -11,8 +11,8 @@ $id = 4; // TODO replace with SESSION_["user"]
 $error = "";
 $user = $um->getUserById($id,$error);
 
-$title = "Trasis - Trainings";
-include 'inc/headerC.inc.php';
+$title = "Trainings";
+include 'inc/header.inc.php';
 ?>
 
 <h1 class ="centered_titles push_top">My Trainings</h1>
@@ -75,5 +75,5 @@ include 'inc/headerC.inc.php';
 </div>
 
 <?php
-include 'inc/footerC.inc.php';
+include 'inc/footer.inc.php';
 ?>

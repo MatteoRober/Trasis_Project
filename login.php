@@ -47,7 +47,7 @@ if(isset($_POST['validation'])) {
 }
 
 $title = "Login";
-include 'inc/headerD.inc.php';
+include 'inc/header.inc.php';
 ?>
 
 <!-- <img class="" src="pics/h_trasis_logo.png" alt="Logo trasis"> -->
@@ -69,5 +69,5 @@ include 'inc/headerD.inc.php';
 </div>
 
 <?php
-include 'inc/footerD.inc.php';
+include 'inc/footer.inc.php';
 ?>

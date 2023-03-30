@@ -1,16 +1,15 @@
 <?php
 session_start();
 
-require('../../inc/db_functions.inc.php');
+require('../inc/db_functions.inc.php');
 
-use Trasis\Training;
 use Trasis\TrainingManagement;
 
 $message = "";
 
 $title = 'Progress of training courses';
-include '../inc/header.php';
-include 'dashboard_nav.php';
+include '../inc/header.inc.php';
+include 'nav.php';
 ?>
     <main>
         <h1>Progress of training courses</h1>
@@ -32,12 +31,12 @@ include 'dashboard_nav.php';
                 $hoursLeft = $training->__GET("duration")->diff($hoursDone);
                 echo '<td>' . $training->__GET("name") . '</td><br>
                       <td>' . $training->__GET("duration") . '</td><br>
-                      <td>'.$hoursLeft->format('%a hours remaining').'</td><br>';
+                      <td>' . $hoursLeft->format('%a hours remaining').'</td><br>';
             }
             echo '</tr>';
             ?>
         </table>
     </main>
 <?php
-include '../inc/footer.php';
+include '../inc/footer.inc.php';
 ?>

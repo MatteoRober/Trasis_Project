@@ -42,7 +42,7 @@ $user = new User();
 }*/
 
 $title = "Home";
-include 'inc/headerC.inc.php';
+include 'inc/header.inc.php';
 
 echo $message;
 ?>
@@ -55,5 +55,5 @@ echo $message;
 </main>
 
 <?php
-include 'inc/footerC.inc.php'
+include 'inc/footer.inc.php'
 ?>

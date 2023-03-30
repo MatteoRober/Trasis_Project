@@ -1,6 +1,4 @@
 <?php
-$title = "Trasis - trainings";
-include '../inc/headerC.inc.php';
 require ('../inc/db_functions.inc.php');
 
 use Trasis\TrainingManagement;
@@ -11,6 +9,8 @@ $id = 2; // TODO replace with SESSION_["user"]
 $error = "";
 $user = $um->getUserById($id,$error);
 
+$title = "Trainings";
+include '../inc/header.inc.php';
 ?>
 
 <body>
@@ -67,5 +67,7 @@ $user = $um->getUserById($id,$error);
         ?>
     </section>
 </div>
-</body>
-</html>
+
+<?php
+include 'inc/footer.inc.php';
+?>

@@ -1,16 +1,15 @@
 <?php
 session_start();
 
-require('../../inc/db_functions.inc.php');
+require('../inc/db_functions.inc.php');
 
-use Trasis\Training;
 use Trasis\TrainingManagement;
 
 $message = "";
 
 $title = 'My courses';
-include '../../inc/header.php';
-include 'dashboard_nav.php';
+include '../inc/header.inc.php';
+include 'nav.php';
 ?>
     <main>
         <h1>Training courses</h1>
@@ -50,5 +49,5 @@ include 'dashboard_nav.php';
         </table>
     </main>
 <?php
-include '../../inc/footer.php';
+include '../inc/footer.inc.php';
 ?>
