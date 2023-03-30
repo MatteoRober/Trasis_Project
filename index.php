@@ -46,14 +46,12 @@ include 'inc/header.inc.php';
 
 echo $message;
 ?>
-<div class="page-border">
-    <main>
-        <h1 class="hover">Enjoying <span>by training</span></h1>
-        <div class="home-pic">
-            <img src="pics/home_picture.jpg" alt="">
-        </div>
-    </main>
-</div>
+<main>
+    <h1 class="hover">Enjoying <span>by training</span></h1>
+    <div class="home-pic">
+        <img src="pics/home_picture.jpg" alt="">
+    </div>
+</main>
 
 <?php
 include 'inc/footer.inc.php'

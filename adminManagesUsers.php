@@ -5,7 +5,6 @@ $title = "Manage Users";
 include 'inc/header.inc.php';
 
 ?>
-
 <h2>Add a new user</h2>
 
 <form id="addUserForm" method="post"> <!--TODO: attach function to send data to DB-->
@@ -24,7 +23,6 @@ include 'inc/header.inc.php';
     <input type="submit" id="addUser" value="Add a new user" > <!--//via php to the database -->
     <input type="button" id="cancel" value="Cancel" onclick="clearInputs()"> <!--via php empty the form fields-->
 </form>
-
 <?php
 include 'inc/footer.inc.php'
 ?>
