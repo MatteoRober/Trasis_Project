@@ -155,6 +155,39 @@ class TrainingManagement
         DBLink::disconnect($bdd);
         return $result;
     }
+
+    /**
+     * Return all the trainings of the user
+     * @param $user : user
+     * @param $message : message to display
+     * @return array : array of trainings
+     */
+    public function getAllTrainingsForUser($user, $message) {
+        return $this->getAllTrainingsForUserWithId($user->__get('user_id'), $message);
+    }
+
+    /**
+     * Return all the trainings of the user
+     * @param $id : id of the user
+     * @param $message : message to display
+     * @return array : array of trainings
+     */
+    public function getAllTrainingsForUserWithId($id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_user_training WHERE user_id = :id)");
+            $stmt->bindValue(':id', $id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
 }
 
 /**

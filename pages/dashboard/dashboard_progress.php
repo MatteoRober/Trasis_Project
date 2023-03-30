@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+require('../../inc/db_functions.inc.php');
+
+use Trasis\Training;
+use Trasis\TrainingManagement;
+
 $title = 'Progress of training courses';
 include '../inc/header.php';
 include 'dashboard_nav.php';
@@ -12,12 +19,18 @@ include 'dashboard_nav.php';
                 <th>Duration left</th>
             </tr>
             <?php
+            $uid = $_SESSION['user_id'];
+            $trainingManager = new TrainingManagement();
+            $trainings = $trainingManager->getAllTrainingsForUserWithId($uid);
             //For each course the user haven't completed yet, display the course title, duration and duration remaining
             echo '<tr>';
-            for () {
-                echo '<td></td><br>
-                      <td></td><br>
-                      <td></td><br>';
+            foreach ($trainings as $training) {
+                //TODO edit to know how many hours the user has already done for this course
+                $hoursDone = 0;
+                $hoursLeft = $training->__GET("duration")->diff($hoursDone);
+                echo '<td>' . $training->__GET("name") . '</td><br>
+                      <td>' . $training->__GET("duration") . '</td><br>
+                      <td>'.$hoursLeft->format('%a hours remaining').'</td><br>';
             }
             echo '</tr>';
             ?>
