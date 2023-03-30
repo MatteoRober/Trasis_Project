@@ -37,7 +37,7 @@ include 'dashboard_nav.php';
                 //TODO logical condition to check if the course is planned or completed
                 //If the course is planned, display "Planned" in the status column, otherwise display "Completed"
                 $message = "";
-                if (!$training->isDone($uid, $message)) {
+                if (!$trainingManager->isDone($training->__GET("training_id"), $uid, $message)) {
                     echo '<td>Planned</td>';
                 } else {
                     echo '<td>Completed</td>';
