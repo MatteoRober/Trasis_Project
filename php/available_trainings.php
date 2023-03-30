@@ -10,40 +10,19 @@ include '../inc/header.inc.php'
 <form class = "trainings_form">
             <section>
                 <?php
-                //TODO: get all available trainings
-
-                //for($i = 0;i<)
+                //TODO: get all my trainings
+                $length = 5;//to change to amount of trainings i have
+                for($i = 0;$i<$length;$i++){
+                    $title = "to change";
+                    $description = "to change but longer";
+                    echo
+                    '<article>
+                    <img src="../pics/1+1=3.jpeg" alt="1+1=3">
+                    <h3>Quantum Physics</h3>
+                    <p>so easy to learn quantum Physics</p>
+                    </article>';
+                }
                 ?>
-                <article>
-                    <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-                    <h3>Quantum Physics</h3>
-                    <p>so easy to learn quantum Physics</p>
-                </article>
-                <article>
-                    <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-                    <h3>Quantum Physics</h3>
-                    <p>so easy to learn quantum Physics</p>
-                </article>
-                <article>
-                    <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-                    <h3>Quantum Physics</h3>
-                    <p>so easy to learn quantum Physics</p>
-                </article>
-                <article>
-                    <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-                    <h3>Quantum Physics</h3>
-                    <p>so easy to learn quantum Physics</p>
-                </article>
-                <article>
-                    <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-                    <h3>Quantum Physics</h3>
-                    <p>so easy to learn quantum Physics</p>
-                </article>
-                <article>
-                    <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-                    <h3>Quantum Physics</h3>
-                    <p>so easy to learn quantum Physics</p>
-                </article>
             </section>
         </form>
 <h1 class ="centered_titles push_top">available trainings</h1>
@@ -52,39 +31,20 @@ include '../inc/header.inc.php'
         <?php
         //TODO: get all available trainings
 
-        //for($i = 0;i<)
+        $length = 5;//to change to amount of trainings i have
+        for($i = 0;$i<$length;$i++){
+            $title = "to change";
+            $description = "to change but longer";
+            echo
+            '<article>
+                    <img src="../pics/1+1=3.jpeg" alt="1+1=3">
+                    <h3>Quantum Physics</h3>
+                    <p>so easy to learn quantum Physics</p>
+                    </article>';
+        }
         ?>
-        <article>
-            <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-            <h3>Quantum Physics</h3>
-            <p>so easy to learn quantum Physics</p>
-        </article>
-        <article>
-            <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-            <h3>Quantum Physics</h3>
-            <p>so easy to learn quantum Physics</p>
-        </article>
-        <article>
-            <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-            <h3>Quantum Physics</h3>
-            <p>so easy to learn quantum Physics</p>
-        </article>
-        <article>
-            <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-            <h3>Quantum Physics</h3>
-            <p>so easy to learn quantum Physics</p>
-        </article>
-        <article>
-            <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-            <h3>Quantum Physics</h3>
-            <p>so easy to learn quantum Physics</p>
-        </article>
-        <article>
-            <img src="../pics/1+1=3.jpeg" alt="1+1=3">
-            <h3>Quantum Physics</h3>
-            <p>so easy to learn quantum Physics with all my friends</p>
-        </article>
+
     </section>
 </form>
-    </body>
+</body>
 </html>
