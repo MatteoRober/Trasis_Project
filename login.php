@@ -35,8 +35,7 @@ if(isset($_POST['validation'])) {
         $noError = false;
     } else {
         $user = $userManagement->getUserByMail($mail, $message);
-        // TODO - Hash password verification
-        if($password != $user->__get('password')) {
+        if(!password_verify($password, $user->__get('password'))) {
             $message .= "Incorrect credentials.";
             $noError = false;
         } else {
