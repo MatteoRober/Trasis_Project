@@ -6,6 +6,8 @@ require('../../inc/db_functions.inc.php');
 use Trasis\Training;
 use Trasis\TrainingManagement;
 
+$message = "";
+
 $title = 'Expiring training courses';
 include '../inc/header.php';
 include 'dashboard_nav.php';
@@ -23,7 +25,7 @@ include 'dashboard_nav.php';
             <?php
             $uid = $_SESSION['user_id'];
             $trainingManager = new TrainingManagement();
-            $trainings = $trainingManager->getDoneTrainingsForUserWithId($uid);
+            $trainings = $trainingManager->getDoneTrainingsForUserWithId($uid, $message);
             //For each course the user have completed and have an expiration date, display the course details in a table row
             echo '<tr>';
             $message = "";

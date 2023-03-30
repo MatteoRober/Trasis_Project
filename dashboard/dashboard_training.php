@@ -6,6 +6,8 @@ require('../../inc/db_functions.inc.php');
 use Trasis\Training;
 use Trasis\TrainingManagement;
 
+$message = "";
+
 $title = 'My courses';
 include '../../inc/header.php';
 include 'dashboard_nav.php';
@@ -24,7 +26,7 @@ include 'dashboard_nav.php';
             <?php
             $uid = $_SESSION['user_id'];
             $trainingManager = new TrainingManagement();
-            $trainings = $trainingManager->getAllTrainingsForUserWithId($uid);
+            $trainings = $trainingManager->getAllTrainingsForUserWithId($uid, $message);
             //For each course the user have planned or completed, display the course details in a table row
             echo '<tr>';
             foreach ($trainings as $training) {
@@ -43,7 +45,7 @@ include 'dashboard_nav.php';
                     echo '<td>Completed</td>';
                 }
             }
-            '</tr>';
+            echo '</tr>';
             ?>
         </table>
     </main>
