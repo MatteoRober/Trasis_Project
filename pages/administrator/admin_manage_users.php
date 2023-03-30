@@ -1,7 +1,8 @@
 <?php
+session_start();
 
 $title = "Trasis - Manage Users";
-include '../../inc/header.inc.php';
+include '../../inc/headerC.inc.php';
 
 ?>
 <style>
@@ -36,6 +37,6 @@ include '../../inc/header.inc.php';
 
 
 <?php
-include '../../inc/footer.inc.php'
+include '../../inc/footerC.inc.php'
 ?>
 
