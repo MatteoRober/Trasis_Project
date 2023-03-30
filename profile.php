@@ -45,3 +45,6 @@ $user = $um->getUserById($id,$error);
     </span>
 
 </section>
+<?php
+include 'inc/footer.inc.php';
+?>

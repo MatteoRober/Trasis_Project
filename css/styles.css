@@ -4,6 +4,7 @@ html, body {
 }
 
 body {
+    top: 0px;
     min-height: 100vh;
     width: 100%;
     margin: auto;
@@ -279,6 +280,12 @@ footer {
 .logsdiv>p {
     color:#F5F5F5;
 }
+.lilbar{
+    margin-top:0;
+    width:100%;
+    height: 10%;
+    border-radius: 0.3em 0.3em 0 0;
+}
 .inactivebar{
     background-color: rgb(255, 0, 0);
 }
@@ -345,3 +352,8 @@ footer {
     font-size: 14px;
     color: #fcb040;
 }
+.goog-te-banner-frame{visibility:hidden !important;}
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    display:none;
+}
+#body-main{top:0px !important;}
