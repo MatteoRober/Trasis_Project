@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require('../../inc/db_functions.inc.php');
+require('../inc/db_functions.inc.php');
 
 use Trasis\Training;
 use Trasis\TrainingManagement;
