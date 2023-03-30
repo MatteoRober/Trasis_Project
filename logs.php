@@ -23,18 +23,19 @@ $error = "";
 $user = $um->getUserById($id,$error);
 
 ?>
-
-<section class="logsdiv">
-    <?php
+<main>
+    <h1>Administrator Logs</h1>
+    <div class="logsdiv">
+        <?php
         $logs = $lm->getallogs();
         $logs = array_reverse( $logs);
-    foreach ($logs as $log){
+        foreach ($logs as $log){
             $dateheure = $log->__get('dateheure');
             $description = $log->__get('description');
-        echo"<p>[$dateheure] $description </p>";
+            echo"<p>[$dateheure] $description </p>";
         }
 
-    ?>
+        ?>
+    </div>
+</main>
 
-
-</section>

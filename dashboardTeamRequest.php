@@ -7,10 +7,10 @@ $message = "";
 
 $title = 'Team requests';
 include 'inc/header.inc.php';
-include 'inc/dashboardNav.inc.php';
 ?>
 <main>
     <h1>Team requests</h1>
+    <?php include 'inc/dashboardNav.inc.php';?>
     <table>
         <tr>
             <th>Title</th>

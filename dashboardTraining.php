@@ -9,9 +9,10 @@ $message = "";
 
 $title = 'My courses';
 include 'inc/header.inc.php';
-include 'inc/dashboardNav.inc.php';?>
+?>
 <main>
-    <h1>Training courses</h1>
+    <h1>Dashboard</h1>
+    <?php include 'inc/dashboardNav.inc.php';?>
     <table>
         <tr>
             <th>Title</th>

@@ -12,12 +12,12 @@
   </component>
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter id="5059a539-cfac-4805-8ee4-433823aa9f11" name="PHP" home="C:\Users\matte\php-8.2.4-Win32-vs16-x64\php.exe" debugger_id="php.debugger.XDebug" />
+      <interpreter id="5059a539-cfac-4805-8ee4-433823aa9f11" name="PHP (project level)" home="C:\Users\matte\php-8.2.4-Win32-vs16-x64\php.exe" debugger_id="php.debugger.XDebug" />
     </interpreters>
   </component>
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
-      <interpreter name="PHP">
+      <interpreter name="PHP (project level)">
         <phpinfo binary_type="PHP" php_cgi="C:\Users\matte\php-8.2.4-Win32-vs16-x64\php-cgi.exe" php_cli="C:\Users\matte\php-8.2.4-Win32-vs16-x64\php.exe" path_separator=";" version="8.2.4">
           <additional_php_ini />
           <configuration_file>C:\Users\matte\php-8.2.4-Win32-vs16-x64\php.ini</configuration_file>

@@ -5,10 +5,10 @@ require('inc/db_functions.inc.php');
 
 $title = 'Accreditations';
 include 'inc/header.inc.php';
-include 'inc/dashboardNav.inc.php';
 ?>
 <main>
     <h1>Accreditations</h1>
+    <?php include 'inc/dashboardNav.inc.php';?>
     <table>
         <tr>
             <th>Title</th>
