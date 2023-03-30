@@ -3,6 +3,7 @@ $title = 'Logs';
 include 'inc/header.inc.php';
 include 'inc/dashboardNav.inc.php';
 ?>
+<div class="page-border">
     <nav>
         <a href="dashboardTraining.php">My courses</a>
         <a href="dashboardSummary.php">Summary completed courses</a>
@@ -15,6 +16,7 @@ include 'inc/dashboardNav.inc.php';
         <h1>Logs</h1>
 
     </main>
+</div>
 <?php
 include 'inc/footer.inc.php';
 ?>

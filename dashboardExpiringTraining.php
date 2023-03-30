@@ -11,6 +11,7 @@ $title = 'Expiring training courses';
 include 'inc/header.inc.php';
 include 'inc/dashboardNav.inc.php';
 ?>
+<div class="page-border">
     <main>
         <h1>Expiring training courses</h1>
         <table>
@@ -41,6 +42,7 @@ include 'inc/dashboardNav.inc.php';
             ?>
         </table>
     </main>
+</div>
 <?php
 include 'inc/footer.inc.php';
 ?>

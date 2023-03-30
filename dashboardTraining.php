@@ -9,8 +9,9 @@ $message = "";
 
 $title = 'My courses';
 include 'inc/header.inc.php';
-include 'inc/dashboardNav.inc.php';
 ?>
+<div class="page-border">
+    <?php include 'inc/dashboardNav.inc.php';?>
     <main>
         <h1>Training courses</h1>
         <table>
@@ -48,6 +49,7 @@ include 'inc/dashboardNav.inc.php';
             ?>
         </table>
     </main>
+</div>
 <?php
 include 'inc/footer.inc.php';
 ?>

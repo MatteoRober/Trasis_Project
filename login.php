@@ -57,13 +57,13 @@ include 'inc/header.inc.php';
         <img class="loginFormLogo" src="pics/trasis_icon.png" alt="Logo trasis">
         <h1>Log in into Trasis LMS</h1>
         <form  action="<?php echo htmlentities($_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']); ?>" method="post">
-            <label for="mail">Mail</label>
+            <label for="mail" hidden>Mail</label>
             <input type="email" name="mail" id="mail" placeholder="Mail" autocomplete="off" value="<?php echo $mail ?>">
-            <label for="password">Password</label>
+            <label for="password" hidden>Password</label>
             <input type="password"  name="password" id="password" placeholder="Password" autocomplete="off">
             <p class=""><?php echo $message?></p>
-            <button class="" name="validation">Log in</button>
-            <button class="" name="validation">Forgot password</button>
+            <button class="submit" name="validation">Log in</button>
+            <a class="forgot" href="#">Forgot password ?</a>
         </form>
     </div>
 </div>

@@ -7,20 +7,30 @@ html, body {
 
 body {
     height: 100%;
-    width: 70%;
+    width: 100%;
     margin: auto;
     font-family: Calibri, sans-serif;
     font-weight: bold;
     color: rgb(0, 40, 76);
 }
 
+a {
+    text-decoration: none;
+}
+
+.page-border {
+    margin: auto;
+    width: 70%;
+}
+
 /*------------------------------------- Header ------------------------------------*/
 
 header {
+    margin: auto;
     position: sticky;
     top: 0;
     font-size: 1.3rem;
-    width: 100%;
+    width: 70%;
     box-shadow:  0 -15px 50px 90px rgba(255, 255, 255, 1);
     z-index: 2;
 }
@@ -61,7 +71,7 @@ header {
 /*------------------------------------- Login ------------------------------------*/
 
 main {
-    margin-top: 3em;
+    margin-top: 3.5em;
 }
 
 /*------------------------------------- Login ------------------------------------*/
@@ -73,10 +83,10 @@ main {
 }
 
 .loginBackground {
-    background-image: url("../pics/trasis_login_picture.webp");
-    background-color: black;
+    margin: auto;
+    width: 100%;
     height: 100%;
-    width: 65%;
+    background-image: url("../pics/trasis_login_picture.webp");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -87,14 +97,44 @@ main {
 }
 
 .formBox {
+    width: 50em;
     margin: auto;
     padding: 0 50px;
     text-align: center;
 }
 
 .formBox form {
+    margin: auto;
+    width: 60%;
     display: flex;
     flex-direction: column;
+}
+
+.formBox form input, .submit {
+    background-color: rgb(224, 224, 224);
+    margin-top: 1.25rem;
+    color: rgb(0, 40, 76);
+    border-radius: 1.5rem;
+    text-align: center;
+    font-size: 1.2em;
+    outline: none;
+    height: 2.5rem;
+    border: 0.0625em transparent solid
+}
+
+.formBox form .submit {
+    background-color: rgb(252, 176, 64);
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    color: white;
+}
+
+.forgot {
+    background-color: transparent;
+    color: rgb(0, 40, 76);
+    text-align: center;
+    outline: none;
+    border: 0 transparent solid
 }
 
 /*------------------------------------- Home ------------------------------------*/
@@ -121,7 +161,6 @@ main {
 }
 
 .home-pic img {
-    margin: 3em 0;
     width: 100%;
     border-radius: 3em;
 }
@@ -149,16 +188,19 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    list-style: none;
 }
 
 .credits {
     margin-top: 50px;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 a:hover {
     color: rgb(252, 176, 64);
 }
+
+/*------------------------------------- Training ------------------------------------*/
 
 .push_top{
     margin-top: 100px;
