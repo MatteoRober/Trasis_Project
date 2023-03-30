@@ -3,11 +3,10 @@ $title = "Trasis - trainings";
 include '../inc/header.inc.php'
 ?>
 
-
 <body>
 
 <h1 class ="centered_titles push_top">My Trainings</h1>
-<form class = "trainings_form">
+<div class = "trainings_form">
             <section>
                 <?php
                 //TODO: get all my trainings
@@ -24,9 +23,9 @@ include '../inc/header.inc.php'
                 }
                 ?>
             </section>
-        </form>
+</div>
 <h1 class ="centered_titles push_top">available trainings</h1>
-<form class = "trainings_form">
+<div class = "trainings_form">
     <section>
         <?php
         //TODO: get all available trainings
@@ -45,6 +44,6 @@ include '../inc/header.inc.php'
         ?>
 
     </section>
-</form>
+</div>
 </body>
 </html>
