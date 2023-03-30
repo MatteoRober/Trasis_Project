@@ -24,7 +24,7 @@ class DBLink {
             $link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             $message .= $e->getMessage().'<br>';
-            $link = $message;
+            $link = false;
         }
         return $link;
     }

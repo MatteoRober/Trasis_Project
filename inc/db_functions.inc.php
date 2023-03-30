@@ -35,7 +35,25 @@ class User {
  * @version 1.0
  */
 class UserManagement {
-
+    public function getUserById($uid, &$message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM nd5_utilisateurs WHERE uid = :uid;");
+            $stmt->bindValue(':uid', $uid);
+            if ($stmt->execute()){
+                $result = $stmt->fetchObject("NoDebt\User");
+            } else {
+                $message .= 'Une erreur système est survenue.<br> Veuillez essayer à nouveau plus tard ou contactez l\'administrateur du site. (Code erreur: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
     public function existsInDB($mail, &$message){
         $result = false;
         $bdd    = null;
@@ -111,6 +129,7 @@ class Training {
  */
 class TrainingManagement
 {
+
 
     public function existsInDB($training_id, &$message)
     {
@@ -212,7 +231,22 @@ class TrainingManagement
         DBLink::disconnect($bdd);
         return $result;
     }
-
+    public function getNotRegisteredTrainingsForUserWithId($user_id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training MINUS SELECT * FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id ");
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
     public function isDone($training_id, $user_id, &$message) {
         $result = false;
         $bdd = null;
