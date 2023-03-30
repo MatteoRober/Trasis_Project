@@ -1,4 +1,4 @@
 <?php
 $title = "Home Page";
-include 'inc/header.inc.php'
+include 'inc/headerC.inc.php'
 ?>
