@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-require('../inc/db_functions.inc.php');
+require('inc/db_functions.inc.php');
 
 use Trasis\TrainingManagement;
 
 $message = "";
 
 $title = 'Progress of training courses';
-include '../inc/header.inc.php';
-include 'nav.php';
+include 'inc/header.inc.php';
+include 'inc/dashboardNav.php';
 ?>
     <main>
         <h1>Progress of training courses</h1>
@@ -38,5 +38,5 @@ include 'nav.php';
         </table>
     </main>
 <?php
-include '../inc/footer.inc.php';
+include 'inc/footer.inc.php';
 ?>

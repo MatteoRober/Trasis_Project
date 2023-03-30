@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-require('../inc/db_functions.inc.php');
+require('inc/db_functions.inc.php');
 
 $message = "";
 
 $title = 'Team requests';
-include '../inc/header.inc.php';
-include 'nav.php';
+include 'inc/header.inc.php';
+include 'inc/dashboardNav.php';
 ?>
 <main>
     <h1>Team requests</h1>
@@ -24,5 +24,5 @@ include 'nav.php';
         ?>
 </main>
 <?php
-include '../inc/footer.inc.php';
+include 'inc/footer.inc.php';
 ?>
