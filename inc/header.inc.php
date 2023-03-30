@@ -5,6 +5,9 @@
     <title><?php echo $title?></title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="icon" type="image/png" href="../pics/trasis_icon.png">
+
+    <script src="../js/script.js"></script>
+
 </head>
 <body>
 <header>
