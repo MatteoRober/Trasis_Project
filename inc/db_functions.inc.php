@@ -155,10 +155,12 @@ class UserManagement {
         $password = substr( str_shuffle( $chars ), 0, 12);
         $hashedpassword= password_hash($password, PASSWORD_BCRYPT);
         //returned in array this way you can send the
-        //plain text password to the user
-        //add the hashed password to the database
+        //plain text password to the user [0]
+        //add the hashed password to the database [1]
         return array($password, $hashedpassword);
     }
+
+
 }
 
 /**
