@@ -18,6 +18,7 @@ if(isset($_SESSION['user'])) {
             <img class="header-logo" src="../pics/h_trasis_logo.png" alt="">
             <nav class="header-nav">
                 <ul class="nav-bar">
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="dashboardtraining.php">Dashboard</a></li>
                     <li><a href="availableTrainings.php">Trainings</a></li>
                     <li><a href="profile.php">Profile</a></li>
