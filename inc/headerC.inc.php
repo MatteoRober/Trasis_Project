@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <title><?php echo "Trasis - " . $title ?></title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="icon" type="image/png" href="../pics/trasis_icon.png">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="../pics/trasis_icon.ico">
 </head>
 <body class="connectedBody">
 <header>

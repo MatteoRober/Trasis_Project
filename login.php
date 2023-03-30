@@ -46,7 +46,7 @@ if(isset($_POST['validation'])) {
     }
 }
 
-$title = "Login Page";
+$title = "Login";
 include 'inc/headerD.inc.php';
 ?>
 
