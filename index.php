@@ -60,3 +60,14 @@ echo $message;
 <form method="post">
     <button name="validation">Send mail</button>
 </form>
+
+<main>
+    <h1 class="hover">Enjoying <span>by training</span></h1>
+    <div class="home-pic">
+        <img src="pics/home_picture.jpg" alt="">
+    </div>
+</main>
+
+<?php
+include 'inc/footer.inc.php'
+?>
