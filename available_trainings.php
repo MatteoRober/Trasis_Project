@@ -22,12 +22,13 @@ include 'inc/headerC.inc.php';
             //TODO: get all my trainings
 
             $error = "";
-            $trainings = $tm->getNotRegisteredTrainingsForUserWithId($id,$error);
+            $trainings = $tm->getNotDoneTrainingsForUserWithId($id,$error);
             for($i = 0;$i<count($trainings);$i++){
-                $id = $trainings[$i][0];
-                $title = $trainings[$i][1];
-                $duration = $trainings[$i][2];
-                $validity = $trainings[$i][3];
+                $training = $trainings[$i];
+                $tid = $training->__get('training_id');
+                $title = $training->__get('name');
+                $duration = $training->__get('duration');
+                $validity = $training->__get('validity');
 
                 echo
                 '<article>
@@ -44,18 +45,30 @@ include 'inc/headerC.inc.php';
 <div class = "trainings_form">
     <section>
         <?php
-        //TODO: get all available trainings
+        //TODO: get all my trainings
 
-        $length = 5;//to change to amount of trainings i have
-        for($i = 0;$i<$length;$i++){
-            $title = "to change";
-            $description = "to change but longer";
+        $error = "";
+        $trainings = $tm->getNotRegisteredTrainingsForUserWithId($id,$error);
+        for($i = 0;$i<count($trainings);$i++){
+            $training = $trainings[$i];
+            $tid = $training->__get('training_id');
+            $title = $training->__get('name');
+            $duration = $training->__get('duration');
+            $validity = $training->__get('validity');
+
             echo
-            '<article>
-                <img src="pics/1+1=3.jpeg" alt="1+1=3">
-                <h3>Quantum Physics</h3>
-                <p>so easy to learn quantum Physics</p>
-            </article>';
+                '<article>
+                    <img src="pics/1+1=3.jpeg" alt="1+1=3">
+                    <h3>  ' .$title.' </h3>
+                    <span>duration:'.$duration.' hours</span>
+                    <span>validity:'.$validity.' days</span>
+                   ';
+            if($um->hasAccessToTraining($id,$tid,$error)){
+                echo'<button>join Training</button>';
+            }else{
+                echo'<button>Ask to join Training</button>';
+            }
+                echo'</article>';
         }
         ?>
     </section>
