@@ -35,6 +35,34 @@ class User {
  * @version 1.0
  */
 class UserManagement {
+
+    public function hasAccessToTraining($user_id,$training_id,&$message){
+        $result = false;
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM `trasis_training` 
+            JOIN authorises ON trasis_training.training_id = authorises.training_id 
+            JOIN trasis_function on trasis_function.function_id = authorises.function_id 
+            JOIN identifies on trasis_function.function_id = identifies.function_id 
+            JOIN trasis_user on identifies.user_id = trasis_user.user_id
+            WHERE trasis_training.training_id = :training_id AND trasis_user.user_id = :user_id");
+            $stmt->bindValue(':training_id', $training_id);
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                if ($stmt->fetch() !== false) {
+                    $result = true;
+                }
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
     public function getUserById($uid, &$message){
         $result = null;
         $bdd    = null;
@@ -85,8 +113,7 @@ class UserManagement {
             $stmt = $bdd->prepare("INSERT INTO trasis_user (name, surname, password, enabled, mail) VALUES (:name, :surname, :password, :enabled, :mail)");
             $stmt->bindValue(':name', $user->__get('name'));
             $stmt->bindValue(':surname', $user->__get('surname'));
-            //$stmt->bindValue(':password', $user->__get('password'));
-            $stmt->bindValue(':password', password_hash($user->__get('password'), PASSWORD_BCRYPT));
+            $stmt->bindValue(':password', $user->__get('password'));
             $stmt->bindValue(':enabled', $user->__get('enabled'));
             $stmt->bindValue(':mail', $user->__get('mail'));
             if ($stmt->execute()) {
@@ -121,6 +148,16 @@ class UserManagement {
         }
         DBLink::disconnect($bdd);
         return $result;
+    }
+
+    function rand_password(){
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+        $password = substr( str_shuffle( $chars ), 0, 12);
+        $hashedpassword= password_hash($password, PASSWORD_BCRYPT);
+        //returned in array this way you can send the
+        //plain text password to the user
+        //add the hashed password to the database
+        return array($password, $hashedpassword);
     }
 }
 
