@@ -25,8 +25,8 @@ include '../../inc/header.inc.php';
     <label for="email">Email:</label>
     <input class="inputfield" type="email" id="email" name="email" placeholder="example@example.com" required>
 
-    <label for="password">Password:</label>
-    <input class="inputfield" type="password" id="password" name="password" placeholder="enter the password" required>
+    <p> The password will be auto-generated and send to the user if you click on the submit button</p>
+
 
     <input type="submit" id="addUser" value="Add a new user" > <!--//via php to the database -->
     <input type="button" id="cancel" value="Cancel" onclick="clearForm()"> <!--via php empty the form fields-->
