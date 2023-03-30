@@ -1,6 +1,6 @@
 <?php
 $title = "Trasis - trainings";
-include '../inc/header.inc.php';
+include '../inc/headerC.inc.php';
 require ('../inc/db_functions.inc.php');
 
 use Trasis\TrainingManagement;
