@@ -67,7 +67,8 @@ class UserManagement {
             $stmt = $bdd->prepare("INSERT INTO trasis_user (name, surname, password, enabled, mail) VALUES (:name, :surname, :password, :enabled, :mail)");
             $stmt->bindValue(':name', $user->__get('name'));
             $stmt->bindValue(':surname', $user->__get('surname'));
-            $stmt->bindValue(':password', $user->__get('password'));
+            //$stmt->bindValue(':password', $user->__get('password'));
+            $stmt->bindValue(':password', password_hash($user->__get('password'), PASSWORD_BCRYPT));
             $stmt->bindValue(':enabled', $user->__get('enabled'));
             $stmt->bindValue(':mail', $user->__get('mail'));
             if ($stmt->execute()) {
