@@ -2,6 +2,8 @@
 session_start();
 
 require('inc/db_functions.inc.php');
+
+use Trasis\LogsManagement;
 use Trasis\User;
 use Trasis\UserManagement;
 
@@ -40,7 +42,9 @@ if(isset($_POST['validation'])) {
             $message .= "Incorrect credentials.";
             $noError = false;
         } else {
-            $_SESSION['user'] = $mail;
+            $lm = new LogsManagement();
+            $lm->addlog("user connexion: ".$user->__get('mail'),$message);
+            $_SESSION['user'] = $user->__get("user_id");
             header('Location: index.php');
         }
     }
