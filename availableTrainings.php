@@ -17,7 +17,6 @@ $user = $um->getUserById($id,$error);
 $title = "Trainings";
 include 'inc/header.inc.php';
 ?>
-
 <h1 class ="centered_titles push_top">My Trainings</h1>
 <div class = "trainings_form">
         <section>
@@ -91,7 +90,6 @@ include 'inc/header.inc.php';
         ?>
     </section>
 </div>
-
 <?php
 include 'inc/footer.inc.php';
 ?>
