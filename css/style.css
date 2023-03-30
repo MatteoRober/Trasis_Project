@@ -3,6 +3,11 @@ html, body {
     padding: 0
 }
 
+body {
+    width: 70%;
+    margin: auto;
+}
+
 header, body {
     font-family: Calibri, sans-serif;
     font-weight: bold;
@@ -10,29 +15,39 @@ header, body {
 }
 
 header {
+    position: sticky;
+    top: 0;
     font-size: 1.3rem;
     width: 100%;
+    box-shadow:  0 -15px 50px 90px rgba(255, 255, 255, 1);
+    z-index: 2;
+}
+
+.header-box {
+    background-color: white;
+    padding-top: 2em;
+    display: flex;
+    justify-content: space-around;
 }
 
 .header-logo {
-    text-align: center;
-    width: 100%;
-}
-
-.header-logo img {
-    max-width: 400px;
-    height: auto;
+    max-width: 250px;
+    margin-right: 20%;
 }
 
 nav {
-    text-decoration: none;
+    margin: auto;
     width: 100%;
+    height: fit-content;
+    text-decoration: none;
 }
 
 ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     list-style: none;
 }
 
@@ -41,49 +56,40 @@ li a {
     color: rgb(0, 40, 76);
 }
 
-
-
-/* Trainings-overview */
-.trainingCard{
-    background-color: #56779a;
-    border-radius: 0.8rem;
+.push_top{
+    margin-top: 100px;
+}
+.centered_titles{
     text-align: center;
-    line-height: 200%;
-    width: 30%;
-    margin-bottom: 1%;
-    padding: 1rem;
 }
-.trainingCard h2{
-    color: white;
-    font-size: 1.1rem;
-    margin-top: 0;
-    padding-left: 0;
+.trainings_form{
+    display:flex;
+    margin-top: 2em;
+    justify-content: center;
+    align-items: center;
 }
-.trainingCard h3{
-    font-family: Calibri, sans-serif;
-    font-size: 1.1rem;
-}
-.trainingCard a{
-    font-family: Calibri, sans-serif;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background-color: #00284C;
-    border-radius: 0;
-    border-style: none;
-    width: 100%;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-    padding-left: 8rem;
-    padding-right: 8rem;
-}
-.trainingCard a:hover{
-    background-color: #fcb040;
-}
+.trainings_form section{
+    display:flex;
+    width: 60em;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
 
-.flex-trainingcards{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
 }
+.trainings_form>section>article{
+    /* border: 3px solid #ff6550;*/
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.29);
+    border-radius: 0.5em;
+    width: 16em;
+    height: 14em;
+    margin-bottom: 30px;
+}
+.trainings_form>section>article>img{
+    margin-top:0;
+    width:100%;
+    height: 60%;
+    border-radius: 0.3em 0.3em 0 0;
+}
+.trainings_form>section>article>h3{
+    margin-top:0;
 
+}

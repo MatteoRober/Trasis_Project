@@ -35,7 +35,25 @@ class User {
  * @version 1.0
  */
 class UserManagement {
-
+    public function getUserById($uid, &$message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM nd5_utilisateurs WHERE uid = :uid;");
+            $stmt->bindValue(':uid', $uid);
+            if ($stmt->execute()){
+                $result = $stmt->fetchObject("NoDebt\User");
+            } else {
+                $message .= 'Une erreur système est survenue.<br> Veuillez essayer à nouveau plus tard ou contactez l\'administrateur du site. (Code erreur: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
     public function existsInDB($mail, &$message){
         $result = false;
         $bdd    = null;
@@ -112,6 +130,7 @@ class Training {
 class TrainingManagement
 {
 
+
     public function existsInDB($training_id, &$message)
     {
         $result = false;
@@ -149,6 +168,120 @@ class TrainingManagement
                 $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
             }
             $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+
+    /**
+     * Return all the trainings of the user
+     * @param $id : id of the user
+     * @param $message : message to display
+     * @return array : array of trainings
+     */
+    public function getAllTrainingsForUserWithId($user_id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id AND approved = 1)");
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+
+    public function getDoneTrainingsForUserWithId($user_id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id AND done = 1 AND approved = 1)");
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+
+    public function getNotDoneTrainingsForUserWithId($user_id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id AND done = 0 AND approved = 1)");
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+    public function getNotRegisteredTrainingsForUserWithId($user_id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training MINUS SELECT * FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id ");
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+    public function isDone($training_id, $user_id, &$message) {
+        $result = false;
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training_status WHERE training_id = :training_id AND user_id = :user_id AND done = 1");
+            $stmt->bindValue(':training_id', $training_id);
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                if ($stmt->fetch() !== false) {
+                    $result = true;
+                }
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator';
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+
+    public function getCompletionDate($training_id, $user_id, $message) {
+        $result = null;
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT finishing_date FROM trasis_training_status WHERE training_id = :training_id AND user_id = :user_id");
+            $stmt->bindValue(':training_id', $training_id);
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetch();
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator';
+            }
         } catch (Exception $e) {
             $message .= $e->getMessage() . '<br>';
         }
@@ -241,8 +374,17 @@ class FunctionManagement {
  * @version 1.0
  */
 class TrainingStatus {
-    private $function_id;
-    private $name;
+    /*
+    private $status_id;
+    private $done;
+    private $approved;
+    private $finished_date;
+    private $user_id;
+    private $training_id;
+    */
+    private $trainingStatus_id;
+    private $done;
+    private $approved;
 
     public function __get($prop){
         return $this->$prop;
