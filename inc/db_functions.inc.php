@@ -348,6 +348,9 @@ class TrainingStatus {
     private $user_id;
     private $training_id;
     */
+    private $trainingStatus_id;
+    private $done;
+    private $approved;
 
     public function __get($prop){
         return $this->$prop;
@@ -363,4 +366,5 @@ class TrainingStatus {
  * @version 1.0
  */
 class TrainingStatusManagement {
+
 }
