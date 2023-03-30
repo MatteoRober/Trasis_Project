@@ -257,7 +257,7 @@ class TrainingManagement
         $bdd = null;
         try {
             $bdd = DBLink::connect2db(MYDB, $message);
-            $stmt = $bdd->prepare("SELECT * FROM trasis_training MINUS SELECT * FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id ");
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training WHERE training_id NOT IN (SELECT training_id FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id))");
             $stmt->bindValue(':user_id', $user_id);
             if ($stmt->execute()) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
