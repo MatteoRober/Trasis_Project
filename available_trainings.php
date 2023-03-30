@@ -7,7 +7,7 @@ use Trasis\TrainingManagement;
 Use Trasis\UserManagement;
 $um = new UserManagement();
 $tm = new TrainingManagement();
-$id = 2; // TODO replace with SESSION_["user"]
+$id = 4; // TODO replace with SESSION_["user"]
 $error = "";
 $user = $um->getUserById($id,$error);
 

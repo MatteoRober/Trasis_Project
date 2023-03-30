@@ -35,6 +35,34 @@ class User {
  * @version 1.0
  */
 class UserManagement {
+
+    public function hasAccessToTraining($user_id,$training_id,&$message){
+        $result = false;
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM `trasis_training` 
+            JOIN authorises ON trasis_training.training_id = authorises.training_id 
+            JOIN trasis_function on trasis_function.function_id = authorises.function_id 
+            JOIN identifies on trasis_function.function_id = identifies.function_id 
+            JOIN trasis_user on identifies.user_id = trasis_user.user_id
+            WHERE trasis_training.training_id = :training_id AND trasis_user.user_id = :user_id");
+            $stmt->bindValue(':training_id', $training_id);
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                if ($stmt->fetch() !== false) {
+                    $result = true;
+                }
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
     public function getUserById($uid, &$message){
         $result = null;
         $bdd    = null;
