@@ -1,7 +1,7 @@
         <?php
         if(isset($_SESSION['user'])) {?>
             <footer>
-                <div class="foot-section">
+                <div class="footer-section">
                     <div class="contact">
                         <p>Any questions ?</p>
                         <a href="#">Contact us</a>

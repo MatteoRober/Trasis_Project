@@ -1,12 +1,10 @@
 html, body {
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0
 }
 
 body {
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
     margin: auto;
     font-family: Calibri, sans-serif;
@@ -15,17 +13,30 @@ body {
 }
 
 a {
+    color: rgb(34, 84, 121);;
     text-decoration: none;
+}
+
+a:hover {
+    color: rgb(252, 176, 64);
+}
+
+ul {
+    margin: 0;
+    padding: 0;
 }
 
 .page-border {
     margin: 0 auto 1em auto;
-    width: 70%;
+    width: 75em;
+    max-width: 100%;
+    height: 100%;
 }
 
 /*------------------------------------- Header ------------------------------------*/
 
 header {
+    background-color: white;
     margin-bottom: 3.5em;
     position: sticky;
     top: 0;
@@ -37,7 +48,7 @@ header {
 
 .header-box {
     background-color: white;
-    padding-top: 2em;
+    padding-top: 3em;
     display: flex;
     justify-content: space-around;
 }
@@ -63,21 +74,35 @@ header {
     list-style: none;
 }
 
-.nav-bar li a {
-    text-decoration: none;
-    color: rgb(0, 40, 76);
-}
-
-/*------------------------------------- Login ------------------------------------*/
+/*------------------------------------- Main ------------------------------------*/
 
 main {
-    margin-top: 3.5em;
+    text-align: center;
+}
+
+main > * {
+    margin-bottom: 4em;
+}
+
+main h1 {
+    font-family: "Brandon Grotesque Regular", sans-serif;
+    margin: 0 auto 1em auto;
+    font-size: 5rem;
+}
+
+.info-panel {
+}
+
+.info-panel h2 {
+    font-family: "Brandon Grotesque Regular", sans-serif;
+    margin: 0;
+    font-size: 3rem;
 }
 
 /*------------------------------------- Login ------------------------------------*/
 
 .loginPannel {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
 }
@@ -122,11 +147,16 @@ main {
     border: 0.0625em transparent solid
 }
 
-.formBox form .submit {
+.submit {
     background-color: rgb(252, 176, 64);
     margin-top: 0;
     margin-bottom: 1.25rem;
     color: white;
+}
+
+.submit:hover {
+    cursor: pointer;
+    background-color: rgb(34, 84, 121);
 }
 
 .forgot {
@@ -171,12 +201,24 @@ footer {
     font-family: "Brandon Grotesque Regular", sans-serif;
     width: 100%;
     text-align: center;
+    padding-top: 2em;
 }
 
-.foot-section {
+.footer-section {
     display: flex;
-    justify-content: space-evenly;
-    font-size: 1.3rem;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 2em;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+}
+
+.contact p {
+    margin: 0 0.5em 0 0;
 }
 
 .contact a {
@@ -184,20 +226,17 @@ footer {
 }
 
 .footer-nav ul {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    list-style: none;
+    list-style-type: none;
 }
 
-.credits {
-    margin-top: 50px;
-    font-size: 0.8rem;
+.footer-nav ul li {
+    display: inline-block;
+    margin-left: 1.5em;
 }
 
-a:hover {
-    color: rgb(252, 176, 64);
+.credits p {
+    padding: 1em 0;
+    font-size: 1rem;
 }
 
 /*------------------------------------- Training ------------------------------------*/
