@@ -77,7 +77,7 @@ class UserManagement {
             $stmt = $bdd->prepare("SELECT * FROM nd5_utilisateurs WHERE uid = :uid;");
             $stmt->bindValue(':uid', $uid);
             if ($stmt->execute()){
-                $result = $stmt->fetchObject("NoDebt\User");
+                $result = $stmt->fetchObject("Trasis\User");
             } else {
                 $message .= 'Une erreur système est survenue.<br> Veuillez essayer à nouveau plus tard ou contactez l\'administrateur du site. (Code erreur: ' . $stmt->errorCode() . ')<br>';
             }
@@ -133,6 +133,8 @@ class UserManagement {
             $message .= $e->getMessage() . '<br>';
         }
         DBLink::disconnect($bdd);
+        $lm = new LogsManagement();
+        $lm->addlog("new account created for: ".$user->__get('mail'),$message);
         return $noError;
     }
 
@@ -475,6 +477,58 @@ class TrainingStatusManagement {
             $stmt->bindValue(':user_id', $userid);
             if ($stmt->execute()) {
                 $message .= "TrainingStatus created successfully.<br>";
+                $noError = true;
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $message;
+    }
+}
+
+class Logs{
+    private $logs_id;
+    private $dateheure;
+    private $description;
+    public function __get($prop){
+        return $this->$prop;
+    }
+    public function __set($prop, $val){
+        $this->$prop = $val;
+    }
+}
+class LogsManagement{
+    public function getallogs(){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_logs");
+            if ($stmt->execute()){
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Logs");
+            } else {
+                $message .= 'Une erreur système est survenue.<br> Veuillez essayer à nouveau plus tard ou contactez l\'administrateur du site. (Code erreur: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+    public function addlog($logmessage,$message){
+        $noError = false;
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("INSERT INTO trasis_logs (dateheure, description) VALUES ( NOW(), :desc)");
+            $stmt->bindValue(':desc', $logmessage);
+            if ($stmt->execute()) {
+                $message .= "log added successfully.<br>";
                 $noError = true;
             } else {
                 $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
