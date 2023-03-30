@@ -7,7 +7,7 @@ use Trasis\Training;
 use Trasis\TrainingManagement;
 
 $title = 'Progress of training courses';
-include '../inc/header.php';
+include '../inc/header.inc.php';
 include 'dashboard_nav.php';
 ?>
     <main>
@@ -37,5 +37,5 @@ include 'dashboard_nav.php';
         </table>
     </main>
 <?php
-include '../inc/footer.php';
+include '../inc/footer.inc.php';
 ?>

@@ -1,6 +1,6 @@
 <?php
 $title = 'Logs';
-include '../inc/header.php';
+include '../inc/header.inc.php';
 ?>
     <nav>
         <a href="dashboard_training.php">My courses</a>
@@ -15,5 +15,5 @@ include '../inc/header.php';
 
     </main>
 <?php
-include '../inc/footer.php';
+include '../inc/footer.inc.php';
 ?>

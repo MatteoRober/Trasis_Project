@@ -7,7 +7,7 @@ use Trasis\Training;
 use Trasis\TrainingManagement;
 
 $title = 'Expiring training courses';
-include '../inc/header.php';
+include '../inc/header.inc.php';
 include 'dashboard_nav.php';
 ?>
     <main>
@@ -23,10 +23,10 @@ include 'dashboard_nav.php';
             <?php
             $uid = $_SESSION['user_id'];
             $trainingManager = new TrainingManagement();
-            $trainings = $trainingManager->getDoneTrainingsForUserWithId($uid);
+            $message = "";
+            $trainings = $trainingManager->getDoneTrainingsForUserWithId($uid, $message);
             //For each course the user have completed and have an expiration date, display the course details in a table row
             echo '<tr>';
-            $message = "";
             foreach ($trainings as $training) {
                 $completionDate = $trainingManager->getCompletionDate($training->__GET("training_id"), $uid, $message);
                 $duration = $training->__GET("duration");
@@ -41,5 +41,5 @@ include 'dashboard_nav.php';
         </table>
     </main>
 <?php
-include '../inc/footer.php';
+include '../inc/footer.inc.php';
 ?>

@@ -1,6 +1,6 @@
 <?php
 $title = 'Summary completed courses';
-include '../inc/header.php';
+include '../inc/header.inc.php';
 ?>
 <nav>
     <a href="dashboard_training.php">My courses</a>
@@ -15,9 +15,9 @@ include '../inc/header.php';
 <main>
     <h1>Summary completed courses</h1>
     <?php
-    //TODO graph of the number of courses completed and hours per ... (month, year, etc.)
+    //todo graph of the number of courses completed and hours per ... (month, year, etc.)
     ?>
 </main>
 <?php
-include '../inc/footer.php';
+include '../inc/footer.inc.php';
 ?>
