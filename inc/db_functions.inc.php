@@ -113,8 +113,7 @@ class UserManagement {
             $stmt = $bdd->prepare("INSERT INTO trasis_user (name, surname, password, enabled, mail) VALUES (:name, :surname, :password, :enabled, :mail)");
             $stmt->bindValue(':name', $user->__get('name'));
             $stmt->bindValue(':surname', $user->__get('surname'));
-            //$stmt->bindValue(':password', $user->__get('password'));
-            $stmt->bindValue(':password', password_hash($user->__get('password'), PASSWORD_BCRYPT));
+            $stmt->bindValue(':password', $user->__get('password'));
             $stmt->bindValue(':enabled', $user->__get('enabled'));
             $stmt->bindValue(':mail', $user->__get('mail'));
             if ($stmt->execute()) {
@@ -149,6 +148,16 @@ class UserManagement {
         }
         DBLink::disconnect($bdd);
         return $result;
+    }
+
+    function rand_password(){
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+        $password = substr( str_shuffle( $chars ), 0, 12);
+        $hashedpassword= password_hash($password, PASSWORD_BCRYPT);
+        //returned in array this way you can send the
+        //plain text password to the user
+        //add the hashed password to the database
+        return array($password, $hashedpassword);
     }
 }
 
