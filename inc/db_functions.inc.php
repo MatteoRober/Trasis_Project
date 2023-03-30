@@ -59,7 +59,7 @@ class UserManagement {
         $bdd    = null;
         try {
             $bdd  = DBLink::connect2db(MYDB, $message);
-            $stmt = $bdd->prepare("SELECT * FROM tasis_user WHERE mail = :mail");
+            $stmt = $bdd->prepare("SELECT * FROM trasis_user WHERE mail = :mail");
             $stmt->bindValue(':mail', $mail);
             if ($stmt->execute()){
                 if($stmt->fetch() !== false){
@@ -85,7 +85,8 @@ class UserManagement {
             $stmt = $bdd->prepare("INSERT INTO trasis_user (name, surname, password, enabled, mail) VALUES (:name, :surname, :password, :enabled, :mail)");
             $stmt->bindValue(':name', $user->__get('name'));
             $stmt->bindValue(':surname', $user->__get('surname'));
-            $stmt->bindValue(':password', $user->__get('password'));
+            //$stmt->bindValue(':password', $user->__get('password'));
+            $stmt->bindValue(':password', password_hash($user->__get('password'), PASSWORD_BCRYPT));
             $stmt->bindValue(':enabled', $user->__get('enabled'));
             $stmt->bindValue(':mail', $user->__get('mail'));
             if ($stmt->execute()) {
@@ -100,6 +101,26 @@ class UserManagement {
         }
         DBLink::disconnect($bdd);
         return $noError;
+    }
+
+    public function getUserByMail($mail, &$message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_user WHERE mail = :mail;");
+            $stmt->bindValue(':mail', $mail);
+            if ($stmt->execute()){
+                $result = $stmt->fetchObject("Trasis\User");
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
     }
 }
 
@@ -236,7 +257,7 @@ class TrainingManagement
         $bdd = null;
         try {
             $bdd = DBLink::connect2db(MYDB, $message);
-            $stmt = $bdd->prepare("SELECT * FROM trasis_training MINUS SELECT * FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id ");
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training WHERE training_id NOT IN (SELECT training_id FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id))");
             $stmt->bindValue(':user_id', $user_id);
             if ($stmt->execute()) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
