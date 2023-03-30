@@ -156,3 +156,107 @@ class TrainingManagement
         return $result;
     }
 }
+
+/**
+ * Class Role : Role of the User
+ * @author Noa DOCQUIER
+ * @version 1.0
+ */
+class Role {
+    private $role_id;
+    private $name;
+
+    public function __get($prop){
+        return $this->$prop;
+    }
+    public function __set($prop, $val){
+        $this->$prop = $val;
+    }
+}
+
+/**
+ * Class RoleManagement : Role Manager of Users
+ * @author Noa DOCQUIER
+ * @version 1.0
+ */
+class RoleManagement {
+
+}
+
+/**
+ * Class Team : Team of the User
+ * @author Noa DOCQUIER
+ * @version 1.0
+ */
+class Team {
+    private $team_id;
+    private $name;
+
+    public function __get($prop){
+        return $this->$prop;
+    }
+    public function __set($prop, $val){
+        $this->$prop = $val;
+    }
+}
+
+/**
+ * Class TeamManagement : Team Manager of Users
+ * @author Noa DOCQUIER
+ * @version 1.0
+ */
+class TeamManagement {
+
+}
+
+/**
+ * Class UserFunction : Function of the User
+ * @author Noa DOCQUIER
+ * @version 1.0
+ */
+class UserFunction {
+    private $function_id;
+    private $name;
+
+    public function __get($prop){
+        return $this->$prop;
+    }
+    public function __set($prop, $val){
+        $this->$prop = $val;
+    }
+}
+
+/**
+ * Class FunctionManagement : Function Manager of Users
+ * @author Noa DOCQUIER
+ * @version 1.0
+ */
+class FunctionManagement {
+
+}
+
+/**
+ * Class TrainingStatus : Status of a Training
+ * @author Noa DOCQUIER
+ * @version 1.0
+ */
+class TrainingStatus {
+    private $function_id;
+    private $name;
+
+    public function __get($prop){
+        return $this->$prop;
+    }
+    public function __set($prop, $val){
+        $this->$prop = $val;
+    }
+}
+
+/**
+ * Class TrainingStatusManagement : Status Manager of Trainings
+ * @author Noa DOCQUIER
+ * @version 1.0
+ */
+class TrainingStatusManagement {
+
+}
