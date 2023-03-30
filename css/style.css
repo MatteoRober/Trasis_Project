@@ -52,11 +52,11 @@ li a {
     display:flex;
     justify-content:flex-end}
 
-.panelco>section {
+.panelco>form {
     font-family:Montserrat, sans-serif;
     background-color:#FFF;
     text-align:center;
-    width:100%;
+    width:50%;
     box-shadow:.125rem .125rem .3125rem;
     line-height:1.5625rem;
     color:#000;
@@ -79,15 +79,18 @@ li a {
     display:flex;
     justify-content:flex-start;
     margin-left:0;
-    margin-right:100%;
-    width:50%;
-    height:auto;
-    min-width:30px;
+    height: 7em;
+    margin-top:-1.5em;
     padding:2%}
 .logocon{
-
+    margin-bottom:3em;
     width:10em;
 }
+
+.errormess{
+    color: red;
+    font-size: .7em}
+
 .textcdo {
     width:80%;
     margin-top:20%;
