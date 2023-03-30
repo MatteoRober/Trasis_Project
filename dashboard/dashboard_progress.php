@@ -3,13 +3,12 @@ session_start();
 
 require('../inc/db_functions.inc.php');
 
-use Trasis\Training;
 use Trasis\TrainingManagement;
 
 $message = "";
 
 $title = 'Progress of training courses';
-include '../inc/header.inc.php';
+include '../inc/headerC.inc.php';
 include 'dashboard_nav.php';
 ?>
     <main>
@@ -39,5 +38,5 @@ include 'dashboard_nav.php';
         </table>
     </main>
 <?php
-include '../inc/footer.inc.php';
+include '../inc/footerC.inc.php';
 ?>

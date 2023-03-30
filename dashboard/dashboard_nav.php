@@ -5,8 +5,10 @@
     <a href="dashboard_accreditations.php">Accreditations</a>
     <a href="dashboard_expiringTraining.php">Expiring training courses</a>
     <?php
+    /*
     if ($user->getRole() == 'manager') {
 
     }
+    */
     ?>
 </nav>
