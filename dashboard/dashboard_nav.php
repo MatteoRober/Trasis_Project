@@ -5,8 +5,8 @@
     <a href="dashboard_accreditations.php">Accreditations</a>
     <a href="dashboard_expiringTraining.php">Expiring training courses</a>
     <?php
-    //TODO move to profile page (todo in the other dashboard pages)
-    //If the user is an administrator, display the link to the logs page
-    echo '<a href="dashboard_logs.php">Logs</a>';
+    if ($user->getRole() == 'manager') {
+
+    }
     ?>
 </nav>
