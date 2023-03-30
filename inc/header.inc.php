@@ -16,7 +16,7 @@ if(isset($_SESSION['user'])) {
             <nav class="header-nav">
                 <ul class="nav-bar">
                     <li><a href="dashboardtraining.php">Dashboard</a></li>
-                    <li><a href="available_trainings.php">Trainings</a></li>
+                    <li><a href="availableTrainings.php">Trainings</a></li>
                     <li><a href="profile.php">Profile</a></li>
                     <li><a href="php/logout.php">Logout</a></li>
                 </ul>
