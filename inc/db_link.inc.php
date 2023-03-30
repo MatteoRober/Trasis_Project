@@ -17,8 +17,10 @@ class DBLink {
      */
     public static function connect2db($base, &$message){
         try {
+            $myUser = base64_decode(MYUSER);
+            $myPass = base64_decode(MYPASS);
 
-            $link = new PDO('mysql:host=' . MYHOST . ';dbname=' . $base . ';charset=UTF8', MYUSER, MYPASS);
+            $link = new PDO('mysql:host=' . MYHOST . ';dbname=' . $base . ';charset=UTF8', $myUser, $myPass);
             $link->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
             $link->exec("set names utf8");
             $link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
