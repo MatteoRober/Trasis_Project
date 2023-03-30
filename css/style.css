@@ -3,6 +3,11 @@ html, body {
     padding: 0
 }
 
+body {
+    width: 70%;
+    margin: auto;
+}
+
 header, body {
     font-family: Calibri, sans-serif;
     font-weight: bold;
@@ -10,33 +15,102 @@ header, body {
 }
 
 header {
+    position: sticky;
+    top: 0;
     font-size: 1.3rem;
     width: 100%;
+    box-shadow:  0 -15px 50px 90px rgba(255, 255, 255, 1);
+    z-index: 2;
+}
+
+.header-box {
+    background-color: white;
+    padding-top: 2em;
+    display: flex;
+    justify-content: space-around;
 }
 
 .header-logo {
-    text-align: center;
-    width: 100%;
-}
-
-.header-logo img {
-    max-width: 400px;
-    height: auto;
+    max-width: 250px;
+    margin-right: 20%;
 }
 
 nav {
-    text-decoration: none;
+    margin: auto;
     width: 100%;
+    height: fit-content;
+    text-decoration: none;
 }
 
 ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     list-style: none;
 }
 
 li a {
     text-decoration: none;
     color: rgb(0, 40, 76);
+}
+
+.hover {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    font-size: 5em;
+    font-family: "Brandon Grotesque Regular", sans-serif;
+    letter-spacing : 1rem;
+    color: white;
+    z-index: 1;
+}
+
+.hover span {
+    color: rgb(252, 176, 64);
+}
+
+.home-pic {
+    width: 100%;
+}
+
+.home-pic img {
+    margin: 3em 0;
+    width: 100%;
+    border-radius: 3em;
+}
+
+footer {
+    font-family: "Brandon Grotesque Regular", sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.foot-section {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.3rem;
+}
+
+.contact a {
+    color : rgb(34, 84, 121)
+}
+
+.footer-nav ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.credits {
+    margin-top: 50px;
+    font-size: 1rem;
+}
+
+a:hover {
+    color: rgb(252, 176, 64);
 }

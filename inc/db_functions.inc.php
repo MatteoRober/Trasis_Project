@@ -241,8 +241,9 @@ class FunctionManagement {
  * @version 1.0
  */
 class TrainingStatus {
-    private $function_id;
-    private $name;
+    private $trainingStatus_id;
+    private $done;
+    private $approved;
 
     public function __get($prop){
         return $this->$prop;
