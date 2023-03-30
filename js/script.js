@@ -1,5 +1,3 @@
-"use strict";
-
 function clearInputs() {
     // Get all input elements on the page
     const inputElements = document.getElementsByTagName('input');
@@ -13,4 +11,3 @@ function clearInputs() {
         }
     }
 }
-

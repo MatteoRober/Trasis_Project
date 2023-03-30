@@ -5,9 +5,8 @@ $title = "Manage Users";
 include 'inc/header.inc.php';
 
 ?>
-<!--form to enter the information of the new user
-// Submit button => sends data to the database
-// Cancel button => redirects to the admin_manage_users.php page => makes all the form fields empty-->
+
+<h2>Add a new user</h2>
 
 <form id="addUserForm" method="post"> <!--TODO: attach function to send data to DB-->
     <label for="name">Name:</label>
