@@ -1,6 +1,7 @@
 <?php
 $title = 'Logs';
 include 'inc/header.inc.php';
+include 'inc/dashboardNav.inc.php';
 ?>
     <nav>
         <a href="dashboardTraining.php">My courses</a>

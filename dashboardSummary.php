@@ -1,7 +1,7 @@
 <?php
 $title = 'Summary completed courses';
 include 'inc/header.inc.php';
-include 'inc/dashboardNav.php';
+include 'inc/dashboardNav.inc.php';
 ?>
 <nav>
     <a href="dashboardTraining.php">My courses</a>

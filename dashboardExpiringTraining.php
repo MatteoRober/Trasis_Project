@@ -9,7 +9,7 @@ $message = "";
 
 $title = 'Expiring training courses';
 include 'inc/header.inc.php';
-include 'inc/dashboardNav.php';
+include 'inc/dashboardNav.inc.php';
 ?>
     <main>
         <h1>Expiring training courses</h1>
