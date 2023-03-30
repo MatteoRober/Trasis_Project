@@ -289,6 +289,24 @@ class TrainingManagement
         DBLink::disconnect($bdd);
         return $result;
     }
+
+    public function getNotApprovedTrainingsForUserWithId($user_id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id AND approved = 0 AND done = 0)");
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+
     public function getNotRegisteredTrainingsForUserWithId($user_id, $message) {
         $result = array();
         $bdd = null;
@@ -397,7 +415,22 @@ class Team {
  * @version 1.0
  */
 class TeamManagement {
-
+    public function getTeamMembers ($user_id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare();
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\User");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
 }
 
 /**
