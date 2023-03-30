@@ -23,7 +23,7 @@ include 'inc/header.inc.php';
 
 
     <input type="submit" id="addUser" value="Add a new user" > <!--//via php to the database -->
-    <input type="button" id="cancel" value="Cancel" onclick="clearForm()"> <!--via php empty the form fields-->
+    <input type="button" id="cancel" value="Cancel" onclick="clearInputs()"> <!--via php empty the form fields-->
 </form>
 
 <?php
