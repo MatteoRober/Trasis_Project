@@ -38,8 +38,10 @@ if(isset($_POST["asktraining"])){
     $lm->addlog("user asked training: ".$user->__get('mail')." for group id:".$_POST["form_id"],$error);
 }
 ?>
-<h1 class ="centered_titles push_top">My Trainings</h1>
-<div class = "trainings_form">
+<main>
+    <h1>Trainings</h1>
+    <h2 class ="centered_titles push_top">My Trainings</h2>
+    <div class = "trainings_form">
         <section>
             <?php
             //TODO: get all my trainings
@@ -54,7 +56,7 @@ if(isset($_POST["asktraining"])){
                 $validity = $training->__get('validity');
 
                 echo
-                '<article>
+                    '<article>
                     <div class = "lilbar activebar"></div>
                     <h3>  ' .$title.' </h3>
                     <p>duration:'.$duration.' hours</p>
@@ -63,23 +65,23 @@ if(isset($_POST["asktraining"])){
             }
             ?>
         </section>
-</div>
-<h2 class ="centered_titles push_top">Available trainings</h2>
-<div class = "trainings_form">
-    <section>
-        <?php
-        $error = "";
-        $trainings = $tm->getNotRegisteredTrainingsForUserWithId($id,$error);
-        for($i = 0;$i<count($trainings);$i++){
-            $training = $trainings[$i];
-            $tid = $training->__get('training_id');
-            $title = $training->__get('name');
-            $duration = $training->__get('duration');
-            $validity = $training->__get('validity');
-            $access = $um->hasAccessToTraining($id,$tid,$error);
-            $lilbar = $access? "toactivebar":"inactivebar";
-            echo
-                '<article>
+    </div>
+    <h2 class ="centered_titles push_top">Available trainings</h2>
+    <div class = "trainings_form">
+        <section>
+            <?php
+            $error = "";
+            $trainings = $tm->getNotRegisteredTrainingsForUserWithId($id,$error);
+            for($i = 0;$i<count($trainings);$i++){
+                $training = $trainings[$i];
+                $tid = $training->__get('training_id');
+                $title = $training->__get('name');
+                $duration = $training->__get('duration');
+                $validity = $training->__get('validity');
+                $access = $um->hasAccessToTraining($id,$tid,$error);
+                $lilbar = $access? "toactivebar":"inactivebar";
+                echo
+                    '<article>
                     <div class ="lilbar '.$lilbar.'"></div>
                     <h2>  ' .$title.' </h2>
                     <span>duration:</span>
@@ -89,19 +91,20 @@ if(isset($_POST["asktraining"])){
                     <span>'.$validity.' days</span>
                     <form class ="buttgroupeprepair" action="' .'" method="post">
                     <input type="hidden" name="form_id" value="'.$tid. '"/>';
-            if($access){
-                echo'<button type="submit" class = "buttgroupe" name="jointraining">join Training</button>';
-            }else{
-                echo'<button type="submit" class = "buttgroupe" name="asktraining">Ask to join Training</button>';
-            }
+                if($access){
+                    echo'<button type="submit" class = "buttgroupe" name="jointraining">join Training</button>';
+                }else{
+                    echo'<button type="submit" class = "buttgroupe" name="asktraining">Ask to join Training</button>';
+                }
                 echo'</form>
                 </article>';
 
 
-        }
-        ?>
-    </section>
-</div>
+            }
+            ?>
+        </section>
+    </div>
+</main>
 <?php
 include 'inc/footer.inc.php';
 ?>
