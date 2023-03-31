@@ -4,12 +4,7 @@ session_start();
 require('inc/db_functions.inc.php');
 
 use Trasis\AccreditationManager;
-use Trasis\LogsManagement;
-use Trasis\TrainingManagement;
-use Trasis\TrainingStatus;
-use Trasis\TrainingStatusManagement;
 Use Trasis\UserManagement;
-use Trasis\Role;
 use Trasis\RoleManagement;
 use Trasis\FunctionManagement;
 
