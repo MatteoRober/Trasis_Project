@@ -1,39 +1,64 @@
 html, body {
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0
 }
 
 body {
-    height: 100%;
-    width: 70%;
+    min-height: 100vh;
+    width: 100%;
     margin: auto;
     font-family: Calibri, sans-serif;
     font-weight: bold;
     color: rgb(0, 40, 76);
 }
 
+::-webkit-scrollbar {
+    display: none
+}
+
+a {
+    color: rgb(34, 84, 121);;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(252, 176, 64);
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.page-border {
+    margin: 0 auto 1em auto;
+    width: 80em;
+    max-width: 100%;
+    height: 100%;
+}
+
 /*------------------------------------- Header ------------------------------------*/
 
 header {
+    background-color: white;
+    margin-bottom: 3.5em;
     position: sticky;
     top: 0;
     font-size: 1.3rem;
     width: 100%;
-    box-shadow:  0 -15px 50px 90px rgba(255, 255, 255, 1);
+    box-shadow:  0 0 30px 70px rgba(255, 255, 255, 1);
     z-index: 2;
 }
 
 .header-box {
     background-color: white;
-    padding-top: 2em;
+    padding-top: 3em;
     display: flex;
     justify-content: space-around;
 }
 
 .header-logo {
-    max-width: 250px;
+    width: 250px;
     margin-right: 20%;
 }
 
@@ -53,30 +78,47 @@ header {
     list-style: none;
 }
 
-.nav-bar li a {
-    text-decoration: none;
-    color: rgb(0, 40, 76);
+.nav-bar li {
+    margin: 0 0.625rem;
+    flex-wrap: wrap;
 }
 
-/*------------------------------------- Login ------------------------------------*/
+/*------------------------------------- Main ------------------------------------*/
 
-main {
-    margin-top: 3em;
+main > * {
+    margin-bottom: 4em;
+}
+
+main h1 {
+    font-family: "Brandon Grotesque Regular", sans-serif;
+    margin: 0 auto 0.5em auto;
+    font-size: 5rem;
+    text-align: center;
+}
+
+.info-panel {
+    text-align: center;
+}
+
+main h2 {
+    font-family: "Brandon Grotesque Regular", sans-serif;
+    margin: 0;
+    font-size: 3rem;
 }
 
 /*------------------------------------- Login ------------------------------------*/
 
 .loginPannel {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
 }
 
 .loginBackground {
-    background-image: url("../pics/trasis_login_picture.webp");
-    background-color: black;
+    margin: auto;
+    width: 100%;
     height: 100%;
-    width: 65%;
+    background-image: url("../pics/trasis_login_picture.webp");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -87,41 +129,60 @@ main {
 }
 
 .formBox {
+    width: 50em;
     margin: auto;
     padding: 0 50px;
     text-align: center;
 }
 
 .formBox form {
+    margin: auto;
+    width: 60%;
     display: flex;
     flex-direction: column;
 }
+.bigsmalltitle{
+    font-size: 2em;
+}
+.formBox form input, .submit {
+    background-color: rgb(224, 224, 224);
+    margin-top: 1.25rem;
+    color: rgb(0, 40, 76);
+    border-radius: 1.5rem;
+    text-align: center;
+    font-size: 1.2em;
+    outline: none;
+    height: 2.5rem;
+    border: 0.0625em transparent solid
+}
+
+.submit {
+    background-color: rgb(252, 176, 64);
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    color: white;
+}
+
+.submit:hover {
+    cursor: pointer;
+    background-color: rgb(34, 84, 121);
+}
+
+.forgot {
+    background-color: transparent;
+    color: rgb(0, 40, 76);
+    text-align: center;
+    outline: none;
+    border: 0 transparent solid
+}
 
 /*------------------------------------- Home ------------------------------------*/
-
-.hover {
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 45%;
-    left: 25%;
-    font-size: 3em;
-    font-family: "Brandon Grotesque Regular", sans-serif;
-    letter-spacing : 1rem;
-    color: white;
-    z-index: 1;
-}
-
-.hover span {
-    color: rgb(252, 176, 64);
-}
 
 .home-pic {
     width: 100%;
 }
 
 .home-pic img {
-    margin: 3em 0;
     width: 100%;
     border-radius: 3em;
 }
@@ -132,12 +193,29 @@ footer {
     font-family: "Brandon Grotesque Regular", sans-serif;
     width: 100%;
     text-align: center;
+    padding-top: 2em;
 }
 
-.foot-section {
+.footer-section {
     display: flex;
-    justify-content: space-evenly;
-    font-size: 1.3rem;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 2em;
+    flex-wrap: wrap;
+}
+
+.footer-section > * {
+    margin: 0.125rem 0;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+}
+
+.contact p {
+    margin: 0 0.5em 0 0;
 }
 
 .contact a {
@@ -145,55 +223,177 @@ footer {
 }
 
 .footer-nav ul {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    list-style-type: none;
 }
 
-.credits {
-    margin-top: 50px;
+.footer-nav ul li {
+    display: inline-block;
+    margin-left: 1.5em;
+}
+
+.credits p {
+    padding: 1em 0;
     font-size: 1rem;
 }
 
-a:hover {
-    color: rgb(252, 176, 64);
-}
+/*------------------------------------- Training ------------------------------------*/
 
-.push_top{
-    margin-top: 100px;
-}
-.centered_titles{
-    text-align: center;
-}
 .trainings_form{
     display:flex;
     margin-top: 2em;
     justify-content: center;
     align-items: center;
 }
-.trainings_form section{
+
+.trainings_form section {
     display:flex;
     width: 60em;
     flex-wrap:wrap;
     justify-content: space-evenly;
+    align-items: stretch;
 
 }
-.trainings_form>section>article{
+
+.trainings_form>section>article {
     /* border: 3px solid #ff6550;*/
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.29);
     border-radius: 0.5em;
     width: 16em;
-    height: 14em;
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
 }
-.trainings_form>section>article>img{
+.flex1{
+    flex:1;
+}
+
+.trainings_form>section>article>img {
     margin-top:0;
     width:100%;
     height: 60%;
     border-radius: 0.3em 0.3em 0 0;
 }
+
+.trainings_form>section>article>h3 {
+    margin-top:0;
+}
+
+/*------------------------------------- Logs ------------------------------------*/
+
+.logsdiv{
+    padding: 1em;
+    background-color:#000000;
+    height: 25em;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    border-radius: 2em;
+}
+
+.logsdiv>p {
+    color:#F5F5F5;
+}
+
+.lilbar{
+    margin-top:0;
+    width:100%;
+    height: 1em;
+    border-radius: 0.3em 0.3em 0 0;
+}
+
+.inactivebar{
+    background-color: rgb(255, 0, 0);
+}
+
+.toactivebar{
+    background-color: rgb(0, 76, 198);
+}
+
+.activebar{
+    background-color: rgb(15, 116, 0);
+}
+
 .trainings_form>section>article>h3{
     margin-top:0;
 
+}
+
+.buttgroupeprepair{
+    display:flex;
+    justify-content: center;
+    margin-top:10%;
+}
+
+.buttgroupe {
+    margin-bottom: 1em;
+    border-radius:.2rem;
+    font-family:Montserrat, sans-serif;
+    font-weight:400;
+    background-color:#F5F5F5;
+    border-color:#000;
+    padding:.5rem 1rem
+}
+
+/*------------------------------------- Profile ------------------------------------*/
+
+.profile-box {
+    border-radius: 1em;
+    padding: 2em;
+    margin: 0 auto 3em auto;
+    max-width: 40%;
+    background-color: rgb(0, 40, 76);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-form > label {
+    color: rgb(252, 176, 64);
+    font-size: 1.1rem;
+    outline: none;
+    margin-bottom: 0.2em;
+}
+
+.profile-form > input {
+    color: white;
+    text-align: center;
+    font-size: 1.3rem;
+    outline: none;
+    height: 1.5rem;
+    border: 0.0625em transparent solid;
+    margin-bottom: 1.5em;
+}
+
+.profile-accreditations input, .profile-functions input {
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 1.3rem;
+    outline: none;
+    height: 1.5rem;
+    border: 0.0625em transparent solid;
+    margin-bottom: 0.3em;
+}
+
+.profile-functions {
+    margin-bottom: 1.5em;
+}
+
+.goog-te-banner-frame{
+    visibility:hidden !important;
+}
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    display:none;
+}
+
+#body-main{
+    top:0 !important;
 }

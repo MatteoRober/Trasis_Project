@@ -41,6 +41,12 @@ class UserManagement {
         $bdd = null;
         try {
             $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM authorises WHERE training_id = :training_id");
+            $stmt->bindValue(":training_id",$training_id);
+            $stmt->execute();
+            if(!$stmt->fetch()){
+                return true;
+            }
             $stmt = $bdd->prepare("SELECT * FROM `trasis_training` 
             JOIN authorises ON trasis_training.training_id = authorises.training_id 
             JOIN trasis_function on trasis_function.function_id = authorises.function_id 
@@ -68,10 +74,10 @@ class UserManagement {
         $bdd    = null;
         try {
             $bdd  = DBLink::connect2db(MYDB, $message);
-            $stmt = $bdd->prepare("SELECT * FROM nd5_utilisateurs WHERE uid = :uid;");
+            $stmt = $bdd->prepare("SELECT * FROM trasis_user WHERE user_id = :uid;");
             $stmt->bindValue(':uid', $uid);
             if ($stmt->execute()){
-                $result = $stmt->fetchObject("NoDebt\User");
+                $result = $stmt->fetchObject("Trasis\User");
             } else {
                 $message .= 'Une erreur système est survenue.<br> Veuillez essayer à nouveau plus tard ou contactez l\'administrateur du site. (Code erreur: ' . $stmt->errorCode() . ')<br>';
             }
@@ -127,6 +133,8 @@ class UserManagement {
             $message .= $e->getMessage() . '<br>';
         }
         DBLink::disconnect($bdd);
+        $lm = new LogsManagement();
+        $lm->addlog("new account created for: ".$user->__get('mail'),$message);
         return $noError;
     }
 
@@ -172,6 +180,7 @@ class Training {
     private $training_id;
     private $name;
     private $duration;
+    private $description;
     private $validity;
 
     public function __get($prop){
@@ -189,7 +198,6 @@ class Training {
  */
 class TrainingManagement
 {
-
 
     public function existsInDB($training_id, &$message)
     {
@@ -237,7 +245,7 @@ class TrainingManagement
 
     /**
      * Return all the trainings of the user
-     * @param $id : id of the user
+     * @param $user_id : id of the user
      * @param $message : message to display
      * @return array : array of trainings
      */
@@ -291,6 +299,24 @@ class TrainingManagement
         DBLink::disconnect($bdd);
         return $result;
     }
+
+    public function getNotApprovedTrainingsForUserWithId($user_id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training WHERE training_id IN (SELECT training_id FROM trasis_training_status WHERE user_id = :user_id AND approved = 0 AND done = 0)");
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+
     public function getNotRegisteredTrainingsForUserWithId($user_id, $message) {
         $result = array();
         $bdd = null;
@@ -374,6 +400,25 @@ class Role {
  */
 class RoleManagement {
 
+    public function getRoleById($role_id, &$message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_role WHERE role_id = :role_id;");
+            $stmt->bindValue(':role_id', $role_id);
+            if ($stmt->execute()){
+                $result = $stmt->fetchObject("Trasis\Role");
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
 }
 
 /**
@@ -399,7 +444,22 @@ class Team {
  * @version 1.0
  */
 class TeamManagement {
-
+    public function getTeamMembers ($user_id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT p.user_id FROM trasis_team tt JOIN participates p ON tt.team_id = p.team_id WHERE tt.user_id = :user_id");
+            $stmt->bindValue(':user_id', $user_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\User");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
 }
 
 /**
@@ -425,6 +485,29 @@ class UserFunction {
  * @version 1.0
  */
 class FunctionManagement {
+
+    function getUserFunctions($user_id,$message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_function tf
+                                        JOIN identifies i ON i.function_id = tf.function_id
+                                        JOIN trasis_user tu ON i.user_id = tu.user_id
+                                        WHERE tu.user_id = :user_id");
+            $stmt->bindValue(":user_id",$user_id);
+            if ($stmt->execute()){
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\UserFunction");
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
 
 }
 
@@ -459,6 +542,137 @@ class TrainingStatus {
  * @author Noa DOCQUIER
  * @version 1.0
  */
-class TrainingStatusManagement {
+class TrainingStatusManagement
+{
+    public function storeTrainingstatus($trainingstatus, $userid, $trainingid, $message)
+    {
+        $noError = false;
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("INSERT INTO trasis_training_status ( done, approved, training_id, user_id) VALUES (:done, :approved, :training_id, :user_id)");
+            $stmt->bindValue(':done', $trainingstatus->__get('done'));
+            $stmt->bindValue(':approved', $trainingstatus->__get('approved'));
+            $stmt->bindValue(':training_id', $trainingid);
+            $stmt->bindValue(':user_id', $userid);
+            if ($stmt->execute()) {
+                $message .= "TrainingStatus created successfully.<br>";
+                $noError = true;
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $message;
+    }
 
+    public function deleteTrainingstatus($userid, $trainingid, $message) {
+        $noError = false;
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("DELETE FROM trasis_training_status WHERE training_id = :training_id AND user_id = :user_id");
+            $stmt->bindValue(':training_id', $trainingid);
+            $stmt->bindValue(':user_id', $userid);
+            if ($stmt->execute()) {
+                $message .= "TrainingStatus deleted successfully.<br>";
+                $noError = true;
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator';
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+    }
+}
+
+class Logs{
+    private $logs_id;
+    private $dateheure;
+    private $description;
+    public function __get($prop){
+        return $this->$prop;
+    }
+    public function __set($prop, $val){
+        $this->$prop = $val;
+    }
+}
+class LogsManagement{
+    public function getallogs(){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_logs");
+            if ($stmt->execute()){
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Logs");
+            } else {
+                $message .= 'Une erreur système est survenue.<br> Veuillez essayer à nouveau plus tard ou contactez l\'administrateur du site. (Code erreur: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+    public function addlog($logmessage,$message){
+        $noError = false;
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("INSERT INTO trasis_logs (dateheure, description) VALUES ( NOW(), :desc)");
+            $stmt->bindValue(':desc', $logmessage);
+            if ($stmt->execute()) {
+                $message .= "log added successfully.<br>";
+                $noError = true;
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $message;
+    }
+}
+class Accreditation{
+    private $accreditation_id;
+    private $name;
+    public function __get($prop){
+        return $this->$prop;
+    }
+    public function __set($prop, $val){
+        $this->$prop = $val;
+    }
+}
+class AccreditationManager{
+
+    function getUserAccreditations($uid,$message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT trasis_accreditation.accreditation_id,trasis_accreditation.name FROM trasis_accreditation
+                                        JOIN proves on proves.accreditation_id = trasis_accreditation.accreditation_id
+                                        JOIN trasis_user 
+                                        on proves.user_id = trasis_user.user_id
+                                        WHERE trasis_user.user_id = :uid");
+            $stmt->bindValue(":uid",$uid);
+            if ($stmt->execute()){
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Accreditation");
+            } else {
+                $message .= 'Une erreur système est survenue.<br> Veuillez essayer à nouveau plus tard ou contactez l\'administrateur du site. (Code erreur: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
 }
