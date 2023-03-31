@@ -21,6 +21,7 @@ class User {
     private $enabled;
     private $mail;
 
+
     public function __get($prop){
         return $this->$prop;
     }
