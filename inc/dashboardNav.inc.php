@@ -13,7 +13,7 @@ if (isset($_SESSION['user'])) {
     $role = $rm->getRoleById($user->__get('role_id'), $message);
 }
 ?>
-<nav>
+<nav class="nav-dashboard">
     <a href="dashboardTraining.php">My courses</a>
     <a href="dashboardSummary.php">Summary completed courses</a>
     <a href="dashboardProgress.php">Progress of training courses</a>
@@ -21,9 +21,9 @@ if (isset($_SESSION['user'])) {
     <a href="dashboardExpiringTraining.php">Expiring training courses</a>
     <?php
     if($role->__get('role_id') == 3) {
-        echo '<a href="dashboardTeamRequest.php">Team Requests</a>';
+        echo '<a href="dashboardTeamRequest.php">Team requests</a>';
     } elseif ($role->__get('role_id') == 2) {
-        echo '<a href="dashboardTrainingManager.php">Team Requests</a>';
+        echo '<a href="dashboardTrainingManager.php">Training manager</a>';
     }
     ?>
 </nav>
