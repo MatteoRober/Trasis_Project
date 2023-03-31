@@ -1,10 +1,14 @@
 <?php
 session_start();
 
+require('inc/db_functions.inc.php');
+
 $title = "Manage Users";
 include 'inc/header.inc.php';
 
 ?>
+<h2>Logs</h2>
+<a href="logs.php">Go to Logs</a>
 <h2>Add a new user</h2>
 
 <form id="addUserForm" method="post"> <!--TODO: attach function to send data to DB-->
