@@ -2,27 +2,25 @@
 session_start();
 
 require('inc/db_functions.inc.php');
-include 'inc/header.inc.php';
-
 
 use Trasis\LogsManagement;
 use Trasis\TrainingManagement;
 use Trasis\TrainingStatus;
 use Trasis\TrainingStatusManagement;
 Use Trasis\UserManagement;
+
 if(!isset($_SESSION['user'])) {
     header("location: login.php");
 }
+
 $um = new UserManagement();
 $tm = new TrainingManagement();
 $tsm = new TrainingStatusManagement();
+$ts = new TrainingStatus();
 $id = $_SESSION['user'];
 $error = "";
 $user = $um->getUserById($id,$error);
 
-$title = "Trainings";
-
-$ts = new TrainingStatus();
 if(isset($_POST["jointraining"])) {
     $ts->__set('done', 0);
     $ts->__set('approved', 1);
@@ -30,6 +28,7 @@ if(isset($_POST["jointraining"])) {
     $lm = new LogsManagement();
     $lm->addlog("user joined training: ".$user->__get('mail')." in group id:".$_POST["form_id"],$error);
 }
+
 if(isset($_POST["asktraining"])){
     $ts->__set('done',0);
     $ts->__set('approved',0);
@@ -38,9 +37,10 @@ if(isset($_POST["asktraining"])){
     $lm->addlog("user asked training: ".$user->__get('mail')." for group id:".$_POST["form_id"],$error);
 }
 
+$title = "Trainings";
+include 'inc/header.inc.php';
 ?>
 <main>
-
     <h1>Trainings</h1>
     <h2 class ="centered_titles push_top">My Trainings</h2>
     <div class = "trainings_form">
@@ -114,14 +114,10 @@ if(isset($_POST["asktraining"])){
                 }
                 echo'</form>
                 </article>';
-
-
             }
             ?>
         </section>
     </div>
-
-
 </main>
 <?php
 include 'inc/footer.inc.php';

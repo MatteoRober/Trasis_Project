@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $title = 'Summary completed courses';
 include 'inc/header.inc.php';
 ?>
