@@ -15,7 +15,6 @@ if (isset($_SESSION['user'])) {
 ?>
 <nav class="nav-dashboard">
     <a href="dashboardTraining.php">My courses</a>
-    <a href="dashboardSummary.php">Summary completed courses</a>
     <a href="dashboardProgress.php">Progress of training courses</a>
     <a href="dashboardAccreditations.php">Accreditations</a>
     <a href="dashboardExpiringTraining.php">Expiring training courses</a>
