@@ -5,16 +5,40 @@ require('inc/db_functions.inc.php');
 
 use Trasis\TrainingManagement;
 use Trasis\TeamManagement;
+use Trasis\LogsManagement;
+use Trasis\TrainingStatus;
 
-$message = "";
-$uid = $_SESSION['user_id'];
+if(!isset($_SESSION['user'])) {
+    header("location: login.php");
+}
 
 $title = 'Team requests';
 include 'inc/header.inc.php';
-include 'inc/dashboardNav.inc.php';
+
+$message = "";
+$uid = $_SESSION['user'];
+
+$um = new UserManagement();
+$tm = new TrainingManagement();
+$tsm = new TrainingStatusManagement();
+$ts = new TrainingStatus();
+
+$user = $um->getUserById($uid,$message);
+
+if(isset($_POST["accept"])) {
+    $ts->__set('done', 0);
+    $ts->__set('approved', 1);
+    $tsm->storeTrainingstatus($ts, $uid, $_POST["form_id"], $message);
+    $lm = new LogsManagement();
+    $lm->addlog("training approuved by manager: ".$user->__get('mail')." in group id:".$_POST["form_id"],$message);
+}
+if(isset($_POST["refuse"])){
+    $tsm->deleteTrainingstatus($uid, $_POST["form_id"], $message);
+}
 ?>
     <main>
         <h1>Team requests</h1>
+        <?php include 'inc/dashboardNav.inc.php';?>
         <table>
             <tr>
                 <th>Title</th>
@@ -27,16 +51,22 @@ include 'inc/dashboardNav.inc.php';
             $teamManager = new TeamManagement();
             $members = $teamManager->getTeamMembers($uid, $message);
             $trainingManager = new TrainingManagement();
-            echo '<tr>';
             foreach ($members as $member) {
+                echo '<tr>';
                 $trainings = $trainingManager->getNotApprovedTrainingsForUserWithId($member->__GET('user_id'), $message);
                 foreach ($trainings as $training) {
                     '<td>' . $training->__GET("name") . '</td><br>
                      <td>' . $training->__GET("description") . '</td><br>
                      <td>' . $training->__GET("duration") . '</td><br>
                      <td>' . $member->__GET("surname") . '</td><br>
-                     <td> <!--todo implement accept or refuse a training for a team member--> </td><br>';
+                     <!--todo implement accept or refuse a training for a team member-->
+                     <td><form>
+                         <button type="submit" name="accept" value="accept">Accept</button>
+                         <button type="submit" name="refuse" value="refuse">Refuse</button>
+                         </form>
+                     </td>';
                 }
+                echo '</tr>';
             }
             ?>
     </main>

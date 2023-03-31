@@ -242,7 +242,7 @@ class TrainingManagement
 
     /**
      * Return all the trainings of the user
-     * @param $id : id of the user
+     * @param $user_id : id of the user
      * @param $message : message to display
      * @return array : array of trainings
      */
@@ -497,8 +497,10 @@ class TrainingStatus {
  * @author Noa DOCQUIER
  * @version 1.0
  */
-class TrainingStatusManagement {
-    public function storeTrainingstatus($trainingstatus,$userid,$trainingid,$message){
+class TrainingStatusManagement
+{
+    public function storeTrainingstatus($trainingstatus, $userid, $trainingid, $message)
+    {
         $noError = false;
         $bdd = null;
         try {
@@ -520,6 +522,25 @@ class TrainingStatusManagement {
         }
         DBLink::disconnect($bdd);
         return $message;
+    }
+
+    public function deleteTrainingstatus($userid, $trainingid, $message) {
+        $noError = false;
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("DELETE FROM trasis_training_status WHERE training_id = :training_id AND user_id = :user_id");
+            $stmt->bindValue(':training_id', $trainingid);
+            $stmt->bindValue(':user_id', $userid);
+            if ($stmt->execute()) {
+                $message .= "TrainingStatus deleted successfully.<br>";
+                $noError = true;
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator';
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
     }
 }
 

@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['user'])) {
+    header("location: login.php");
+}
+
 $title = 'Logs';
 include 'inc/header.inc.php';
 ?>
