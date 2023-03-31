@@ -108,7 +108,7 @@ if(isset($_POST["asktraining"])){
                     <form class ="buttgroupeprepair"  method="post">
                     <input type="hidden" name="form_id" value="'.$tid. '"/>';
                 if($access){
-                    echo'<button type="submit"  class = "buttgroupe" name="jointraining">join Training</button>';
+                    echo'<button type="submit" class = "buttgroupe" name="jointraining">join Training</button>';
                 }else{
                     echo'<button type="submit" class = "buttgroupe" name="asktraining">Ask to join Training</button>';
                 }
@@ -120,6 +120,7 @@ if(isset($_POST["asktraining"])){
             ?>
         </section>
     </div>
+
 
 </main>
 <?php
