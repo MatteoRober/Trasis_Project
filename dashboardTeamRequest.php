@@ -7,6 +7,8 @@ use Trasis\TrainingManagement;
 use Trasis\TeamManagement;
 use Trasis\LogsManagement;
 use Trasis\TrainingStatus;
+use Trasis\UserManagement;
+use Trasis\TrainingStatusManagement;
 
 if (!isset($_SESSION['user'])) {
     header("location: login.php");

@@ -21,9 +21,9 @@ if (isset($_SESSION['user'])) {
     <a href="dashboardExpiringTraining.php">Expiring training courses</a>
     <?php
     if($role->__get('role_id') == 3) {
-        echo '<li><a href="dashboardTeamRequests.php">Team Requests</a></li>';
+        echo '<a href="dashboardTeamRequest.php">Team Requests</a>';
     } elseif ($role->__get('role_id') == 2) {
-        echo '<li><a href="dashboardTrainingManager.php">Team Requests</a></li>';
+        echo '<a href="dashboardTrainingManager.php">Team Requests</a>';
     }
     ?>
 </nav>
