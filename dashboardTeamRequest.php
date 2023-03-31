@@ -71,6 +71,7 @@ if (isset($_POST["refuse"])) {
                 echo '</tr>';
             }
             ?>
+        </table>
     </main>
 <?php
 include 'inc/footer.inc.php';
