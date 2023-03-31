@@ -66,10 +66,12 @@ include 'inc/header.inc.php';
                     <span>'.$duration.' hours</span>
                     <br>
                     <span>validity:</span>
-                    <span>'.$validity.' days</span>
+                    <span>'.$validity.' (months)</span>
                     <br>
                     <br>
                     <span >'.$description.'</span>
+                    <h3 style="text-decoration: underline">send proof of exam:</h3>
+                    <input type="file" alt="send proof"  accept="application/pdf" name="send proof of exam">
                     </div>
                 </article>';
             }
@@ -100,7 +102,7 @@ include 'inc/header.inc.php';
                     <span>'.$duration.' hours</span>
                     <br>
                     <span>validity:</span>
-                    <span>'.$validity.' days</span>
+                    <span>'.$validity.' (months)</span>
                     <br>
                     <br>
                     <span >'.$description.'</span>

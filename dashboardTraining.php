@@ -5,9 +5,12 @@ require('inc/db_functions.inc.php');
 
 use Trasis\TrainingManagement;
 
-if (!isset($_SESSION['user'])) {
+if(!isset($_SESSION['user'])) {
     header("location: login.php");
 }
+
+$trainers = ['M. Davidson', 'Ms. Linka', 'M. Arter', 'Ms. Conor', 'Ms. Milsy'];
+$i = 0;
 
 $title = 'My courses';
 include 'inc/header.inc.php';
@@ -17,8 +20,8 @@ $uid = $_SESSION['user'];
 ?>
     <main>
         <h1>Training courses</h1>
-        <?php include 'inc/dashboardNav.inc.php'; ?>
-        <table>
+        <?php include 'inc/dashboardNav.inc.php';?>
+        <table class="infos-table">
             <tr>
                 <th>Title</th>
                 <th>Trainer</th>
@@ -34,14 +37,15 @@ $uid = $_SESSION['user'];
             foreach ($trainings as $training) {
                 echo '<tr>';
                 //TODO complete to have all the informations wanted
-                echo '<td>' . $training->__GET("name") . '</td><br>
-                      <td>Not implemented yet</td><br>
-                      <td>' . $training->__GET("duration") . '</td><br>
-                      <td>' . $training->__GET("validity") . '</td><br>';
+                echo '<td>' . $training->__GET("name") . '</td>
+                      <td>'.$trainers[$i].'</td>
+                      <td>' . $training->__GET("duration") . ' month(s)</td>
+                      <td>' . $training->__GET("validity") . '</td>';
+                $i++;
                 if ($trainingManager->getCompletionDate($training->__GET("training_id"), $uid, $message) != null) {
-                    echo '<td>' . $trainingManager->getCompletionDate($training->__GET("training_id"), $uid, $message) . '</td><br>';
+                    echo '<td>' . $trainingManager->getCompletionDate($training->__GET("training_id"), $uid, $message) . '</td>';
                 } else {
-                    echo '<td>No date indicated</td><br>';
+                    echo '<td>No date indicated</td>';
                 }
                 //If the course is planned, display "Planned" in the status column, otherwise display "Completed"
                 $message = "";

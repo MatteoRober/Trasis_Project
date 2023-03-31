@@ -17,7 +17,7 @@ include 'inc/header.inc.php';
 <main>
     <h1>Progress of training courses</h1>
     <?php include 'inc/dashboardNav.inc.php';?>
-    <table>
+    <table class="infos-table">
         <tr>
             <th>Title</th>
             <th>Duration</th>
@@ -33,9 +33,9 @@ include 'inc/header.inc.php';
             //TODO edit to know how many hours the user has already done for this course
             $hoursDone = 0;
             //$hoursLeft = $training->__GET("duration")->diff($hoursDone);
-            echo '<td>' . $training->__GET("name") . '</td><br>
-                  <td>' . $training->__GET("duration") . '</td><br>';
-                  //<td>' . $hoursLeft->format('%a hours remaining').'</td><br>';
+            echo '<td>' . $training->__GET("name") . '</td>
+                  <td>' . $training->__GET("duration") . ' month(s)</td>
+                  <td>2 weeks remaining</td><br>';
             echo '</tr>';
         }
         ?>
