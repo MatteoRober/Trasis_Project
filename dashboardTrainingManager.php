@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
         <input type="text" name="duration" id="duration" placeholder="Training duration" autocomplete="off" value="">
         <label for="validity" hidden>validity</label>
         <input type="text" name="validity" id="validity" placeholder="Training validity" autocomplete="off" value="">
-        <button class="submit" name="submit">Add training</button>
+        <button class="addForm" name="submit">Add training</button>
     </form>
     <table class="infos-table">
         <tr>

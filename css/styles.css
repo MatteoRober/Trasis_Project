@@ -156,6 +156,18 @@ main h2 {
     border: 0.0625em transparent solid
 }
 
+.submit {
+    background-color: rgb(252, 176, 64);
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    color: white;
+}
+
+.submit:hover {
+    cursor: pointer;
+    background-color: rgb(34, 84, 121);
+}
+
 .forgot {
     background-color: transparent;
     color: rgb(0, 40, 76);
@@ -441,12 +453,12 @@ footer {
     border: 0.0625em transparent solid
 }
 
-.addUser .submit {
+.addUser button {
     color: white;
     background-color: rgb(0, 40, 76);
 }
 
-.addUser .submit:hover {
+.addUser button:hover {
     cursor: pointer;
     background-color: rgb(252, 176, 64);
 }
