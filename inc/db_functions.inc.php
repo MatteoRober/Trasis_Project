@@ -751,4 +751,23 @@ class AccreditationManager{
         DBLink::disconnect($bdd);
         return $result;
     }
+
+    function getAllAccreditations($message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_accreditation");
+            if ($stmt->execute()){
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Accreditation");
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
 }
