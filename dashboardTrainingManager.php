@@ -27,7 +27,19 @@ if (isset($_POST['submit'])) {
 <main>
     <h1>Manage trainings</h1>
     <?php include 'inc/dashboardNav.inc.php'; ?>
-    <table>
+    <h2>Add training</h2>
+    <form class="addUser" action="" method="post">
+        <label for="name" hidden>name</label>
+        <input type="text" name="name" id="name" placeholder="Training name" autocomplete="off" value="">
+        <label for="description" hidden>description</label>
+        <input type="text" name="description" id="description" placeholder="Training description" autocomplete="off" value="">
+        <label for="duration" hidden>duration</label>
+        <input type="text" name="duration" id="duration" placeholder="Training duration" autocomplete="off" value="">
+        <label for="validity" hidden>validity</label>
+        <input type="text" name="validity" id="validity" placeholder="Training validity" autocomplete="off" value="">
+        <button class="submit" name="submit">Add training</button>
+    </form>
+    <table class="infos-table">
         <tr>
             <th>Title</th>
             <th>Description</th>
@@ -49,21 +61,6 @@ if (isset($_POST['submit'])) {
     ?>
     </table>
 </main>
-<aside>
-    <h2>Add training</h2>
-    <form action="" method="post">
-        <label for="name" hidden>name</label>
-        <input type="text" name="name" id="name" placeholder="Training name" autocomplete="off" value="">
-        <label for="description" hidden>description</label>
-        <input type="text" name="description" id="description" placeholder="Training description" autocomplete="off"
-               value="">
-        <label for="duration" hidden>duration</label>
-        <input type="text" name="duration" id="duration" placeholder="Training duration" autocomplete="off" value="">
-        <label for="validity" hidden>validity</label>
-        <input type="text" name="validity" id="validity" placeholder="Training validity" autocomplete="off" value="">
-        <button class="submit" name="submit">Add training</button>
-    </form>
-</aside>
 <?php
 include 'inc/footer.inc.php';
 ?>

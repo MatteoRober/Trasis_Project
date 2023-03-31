@@ -156,18 +156,6 @@ main h2 {
     border: 0.0625em transparent solid
 }
 
-.submit {
-    background-color: rgb(252, 176, 64);
-    margin-top: 0;
-    margin-bottom: 1.25rem;
-    color: white;
-}
-
-.submit:hover {
-    cursor: pointer;
-    background-color: rgb(34, 84, 121);
-}
-
 .forgot {
     background-color: transparent;
     color: rgb(0, 40, 76);
@@ -406,7 +394,7 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .infos-table {
@@ -430,4 +418,35 @@ footer {
 
 .infos-table tr:nth-child( 2n ) {
     background-color: rgba(86, 119, 154, 0.3)
+}
+
+.formBox form {
+    margin: auto;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+.bigsmalltitle{
+    font-size: 2em;
+}
+
+.addUser input, .addUser .submit {
+    background-color: rgb(224, 224, 224);
+    margin: 1.25rem 1.25rem 0 0;
+    color: rgb(0, 40, 76);
+    text-align: center;
+    font-size: 1.2em;
+    outline: none;
+    height: 2.5rem;
+    border: 0.0625em transparent solid
+}
+
+.addUser .submit {
+    color: white;
+    background-color: rgb(0, 40, 76);
+}
+
+.addUser .submit:hover {
+    cursor: pointer;
+    background-color: rgb(252, 176, 64);
 }
