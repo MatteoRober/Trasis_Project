@@ -56,13 +56,21 @@ if(isset($_POST["asktraining"])){
                 $title = $training->__get('name');
                 $duration = $training->__get('duration');
                 $validity = $training->__get('validity');
-
+                $description = $training->__get('description');
                 echo
                     '<article>
-                    <div class = "lilbar activebar"></div>
-                    <h3>  ' .$title.' </h3>
-                    <p>duration:'.$duration.' hours</p>
-                    <p>validity:'.$validity.' days</p>
+                    <div class ="lilbar activebar" ></div>
+                    <h2>  ' .$title.' </h2>
+                    <div class ="flex1">
+                    <span>duration:</span>
+                    <span>'.$duration.' hours</span>
+                    <br>
+                    <span>validity:</span>
+                    <span>'.$validity.' days</span>
+                    <br>
+                    <br>
+                    <span >'.$description.'</span>
+                    </div>
                 </article>';
             }
             ?>
@@ -80,21 +88,27 @@ if(isset($_POST["asktraining"])){
                 $title = $training->__get('name');
                 $duration = $training->__get('duration');
                 $validity = $training->__get('validity');
+                $description = $training->__get('description');
                 $access = $um->hasAccessToTraining($id,$tid,$error);
                 $lilbar = $access? "toactivebar":"inactivebar";
                 echo
-                    '<article>
-                    <div class ="lilbar '.$lilbar.'"></div>
+                    '<article  >
+                    <div class ="lilbar '.$lilbar.'" ></div>
                     <h2>  ' .$title.' </h2>
+                    <div class ="flex1">
                     <span>duration:</span>
                     <span>'.$duration.' hours</span>
                     <br>
                     <span>validity:</span>
                     <span>'.$validity.' days</span>
-                    <form class ="buttgroupeprepair" action="' .'" method="post">
+                    <br>
+                    <br>
+                    <span >'.$description.'</span>
+                    </div>
+                    <form class ="buttgroupeprepair"  method="post">
                     <input type="hidden" name="form_id" value="'.$tid. '"/>';
                 if($access){
-                    echo'<button type="submit" class = "buttgroupe" name="jointraining">join Training</button>';
+                    echo'<button type="submit"  class = "buttgroupe" name="jointraining">join Training</button>';
                 }else{
                     echo'<button type="submit" class = "buttgroupe" name="asktraining">Ask to join Training</button>';
                 }
@@ -106,7 +120,6 @@ if(isset($_POST["asktraining"])){
             ?>
         </section>
     </div>
-
 
 </main>
 <?php
