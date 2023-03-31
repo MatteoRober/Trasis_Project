@@ -42,7 +42,7 @@ if(isset($_POST["asktraining"])){
 <main>
 
     <h1>Trainings</h1>
-    <h2 class ="centered_titles push_top">My Trainings</h2>
+    <h2>My Trainings</h2>
     <div class = "trainings_form">
         <section>
             <?php
@@ -59,16 +59,16 @@ if(isset($_POST["asktraining"])){
 
                 echo
                     '<article>
-                    <div class = "lilbar activebar"></div>
+                    <div class ="lilbar activebar"></div>
                     <h3>  ' .$title.' </h3>
-                    <p>duration:'.$duration.' hours</p>
-                    <p>validity:'.$validity.' days</p>
+                    <p>Duration : '.$duration.' hours</p>
+                    <p>Validity : '.$validity.' days</p>
                 </article>';
             }
             ?>
         </section>
     </div>
-    <h2 class ="centered_titles push_top">Available trainings</h2>
+    <h2>Available trainings</h2>
     <div class = "trainings_form">
         <section>
             <?php
@@ -85,12 +85,9 @@ if(isset($_POST["asktraining"])){
                 echo
                     '<article>
                     <div class ="lilbar '.$lilbar.'"></div>
-                    <h2>  ' .$title.' </h2>
-                    <span>duration:</span>
-                    <span>'.$duration.' hours</span>
-                    <br>
-                    <span>validity:</span>
-                    <span>'.$validity.' days</span>
+                    <h3>  ' .$title.' </h3>
+                    <p>Duration : '.$duration.' hours</p>
+                    <p>Validity : ' .$validity.' days</p>
                     <form class ="buttgroupeprepair" action="' .'" method="post">
                     <input type="hidden" name="form_id" value="'.$tid. '"/>';
                 if($access){
