@@ -442,7 +442,7 @@ footer {
     font-size: 2em;
 }
 
-.addUser input, .addUser .submit {
+.addUser input, .addUser button {
     background-color: rgb(224, 224, 224);
     margin: 1.25rem 1.25rem 0 0;
     color: rgb(0, 40, 76);
