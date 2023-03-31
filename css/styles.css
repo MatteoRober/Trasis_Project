@@ -4,7 +4,6 @@ html, body {
 }
 
 body {
-    top: 0px;
     min-height: 100vh;
     width: 100%;
     margin: auto;
@@ -42,24 +41,24 @@ ul {
 
 header {
     background-color: white;
-    margin-bottom: 4em;
+    margin-bottom: 3.5em;
     position: sticky;
     top: 0;
     font-size: 1.3rem;
     width: 100%;
-    box-shadow:  0 -15px 50px 90px rgba(255, 255, 255, 1);
+    box-shadow:  0 0 30px 70px rgba(255, 255, 255, 1);
     z-index: 2;
 }
 
 .header-box {
     background-color: white;
-    padding-top: 3.5em;
+    padding-top: 3em;
     display: flex;
     justify-content: space-around;
 }
 
 .header-logo {
-    max-width: 250px;
+    width: 250px;
     margin-right: 20%;
 }
 
@@ -77,6 +76,11 @@ header {
     display: flex;
     justify-content: space-between;
     list-style: none;
+}
+
+.nav-bar li {
+    margin: 0 0.625rem;
+    flex-wrap: wrap;
 }
 
 /*------------------------------------- Main ------------------------------------*/
@@ -196,6 +200,11 @@ footer {
     align-items: center;
     font-size: 1.2rem;
     margin-bottom: 2em;
+    flex-wrap: wrap;
+}
+
+.footer-section > * {
+    margin: 0.125rem 0;
 }
 
 .contact {
@@ -280,30 +289,37 @@ footer {
 .logsdiv>p {
     color:#F5F5F5;
 }
+
 .lilbar{
     margin-top:0;
     width:100%;
     height: 10%;
     border-radius: 0.3em 0.3em 0 0;
 }
+
 .inactivebar{
     background-color: rgb(255, 0, 0);
 }
+
 .toactivebar{
     background-color: rgb(0, 76, 198);
 }
+
 .activebar{
     background-color: rgb(15, 116, 0);
 }
+
 .trainings_form>section>article>h3{
     margin-top:0;
 
 }
+
 .buttgroupeprepair{
     display:flex;
     justify-content: center;
     margin-top:10%;
 }
+
 .buttgroupe {
     border-radius:.2rem;
     font-family:Montserrat, sans-serif;
@@ -313,47 +329,65 @@ footer {
     padding:.5rem 1rem
 }
 
+/*------------------------------------- Profile ------------------------------------*/
 
-.profile-div {
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background-color: rgb(110 135 161);
-    height: 30em;
-    width: 30%;
-    margin-left: 35%;
-    margin-top:6em;
+.profile-box {
+    border-radius: 1em;
+    padding: 2em;
+    margin: 0 auto 3em auto;
+    max-width: 40%;
+    background-color: rgb(0, 40, 76);
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
-.profile-image {
-    margin-top:30px;
-    padding-bottom: 30px;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-bottom: 15px;
+.profile-form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
 }
 
-.profile-name,
-.profile-surname {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-    color: rgb(0, 40, 76);
+.profile-form > label {
+    color: rgb(252, 176, 64);
+    font-size: 1.1rem;
+    outline: none;
+    margin-bottom: 0.2em;
 }
 
-.profile-email {
-    margin-top: 5px;
-    font-size: 14px;
-    color: #fcb040;
+.profile-form > input {
+    color: white;
+    text-align: center;
+    font-size: 1.3rem;
+    outline: none;
+    height: 1.5rem;
+    border: 0.0625em transparent solid;
+    margin-bottom: 1.5em;
 }
-.goog-te-banner-frame{visibility:hidden !important;}
+
+.profile-accreditations input, .profile-functions input {
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 1.3rem;
+    outline: none;
+    height: 1.5rem;
+    border: 0.0625em transparent solid;
+    margin-bottom: 0.3em;
+}
+
+.profile-functions {
+    margin-bottom: 1.5em;
+}
+
+.goog-te-banner-frame{
+    visibility:hidden !important;
+}
+
 .VIpgJd-ZVi9od-ORHb-OEVmcd {
     display:none;
 }
-#body-main{top:0px !important;}
+
+#body-main{
+    top:0 !important;
+}

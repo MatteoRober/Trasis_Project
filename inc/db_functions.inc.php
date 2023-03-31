@@ -379,6 +379,25 @@ class Role {
  */
 class RoleManagement {
 
+    public function getRoleById($role_id, &$message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_role WHERE role_id = :role_id;");
+            $stmt->bindValue(':role_id', $role_id);
+            if ($stmt->execute()){
+                $result = $stmt->fetchObject("Trasis\Role");
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
 }
 
 /**
@@ -430,6 +449,29 @@ class UserFunction {
  * @version 1.0
  */
 class FunctionManagement {
+
+    function getUserFunctions($user_id,$message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_function tf
+                                        JOIN identifies i ON i.function_id = tf.function_id
+                                        JOIN trasis_user tu ON i.user_id = tu.user_id
+                                        WHERE tu.user_id = :user_id");
+            $stmt->bindValue(":user_id",$user_id);
+            if ($stmt->execute()){
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\UserFunction");
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
 
 }
 
@@ -552,6 +594,7 @@ class Accreditation{
     }
 }
 class AccreditationManager{
+
     function getUserAccreditations($uid,$message){
         $result = null;
         $bdd    = null;
@@ -574,6 +617,5 @@ class AccreditationManager{
         }
         DBLink::disconnect($bdd);
         return $result;
-
     }
 }

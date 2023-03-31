@@ -21,7 +21,6 @@
                 <div class="credits">
                     <p>&copy; Helmo Hackaton 2023 (Trasis Project) | All Rights Reserved</p>
                 </div>
-
             </footer>
         </div>
         <?php } ?>
