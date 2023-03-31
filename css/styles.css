@@ -248,6 +248,7 @@ footer {
     width: 60em;
     flex-wrap:wrap;
     justify-content: space-evenly;
+    align-items: stretch;
 
 }
 
@@ -256,8 +257,12 @@ footer {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.29);
     border-radius: 0.5em;
     width: 16em;
-    height: 14em;
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.flex1{
+    flex:1;
 }
 
 .trainings_form>section>article>img {
@@ -291,7 +296,7 @@ footer {
 .lilbar{
     margin-top:0;
     width:100%;
-    height: 10%;
+    height: 1em;
     border-radius: 0.3em 0.3em 0 0;
 }
 

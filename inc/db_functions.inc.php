@@ -178,6 +178,7 @@ class Training {
     private $training_id;
     private $name;
     private $duration;
+    private $description;
     private $validity;
 
     public function __get($prop){

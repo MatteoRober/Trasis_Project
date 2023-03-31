@@ -42,7 +42,7 @@ if(isset($_POST["asktraining"])){
 <main>
 
     <h1>Trainings</h1>
-    <h2>My Trainings</h2>
+    <h2 class ="centered_titles push_top">My Trainings</h2>
     <div class = "trainings_form">
         <section>
             <?php
@@ -56,19 +56,27 @@ if(isset($_POST["asktraining"])){
                 $title = $training->__get('name');
                 $duration = $training->__get('duration');
                 $validity = $training->__get('validity');
-
+                $description = $training->__get('description');
                 echo
                     '<article>
-                    <div class ="lilbar activebar"></div>
-                    <h3>  ' .$title.' </h3>
-                    <p>Duration : '.$duration.' hours</p>
-                    <p>Validity : '.$validity.' days</p>
+                    <div class ="lilbar activebar" ></div>
+                    <h2>  ' .$title.' </h2>
+                    <div class ="flex1">
+                    <span>duration:</span>
+                    <span>'.$duration.' hours</span>
+                    <br>
+                    <span>validity:</span>
+                    <span>'.$validity.' days</span>
+                    <br>
+                    <br>
+                    <span >'.$description.'</span>
+                    </div>
                 </article>';
             }
             ?>
         </section>
     </div>
-    <h2>Available trainings</h2>
+    <h2 class ="centered_titles push_top">Available trainings</h2>
     <div class = "trainings_form">
         <section>
             <?php
@@ -80,15 +88,24 @@ if(isset($_POST["asktraining"])){
                 $title = $training->__get('name');
                 $duration = $training->__get('duration');
                 $validity = $training->__get('validity');
+                $description = $training->__get('description');
                 $access = $um->hasAccessToTraining($id,$tid,$error);
                 $lilbar = $access? "toactivebar":"inactivebar";
                 echo
-                    '<article>
-                    <div class ="lilbar '.$lilbar.'"></div>
-                    <h3>  ' .$title.' </h3>
-                    <p>Duration : '.$duration.' hours</p>
-                    <p>Validity : ' .$validity.' days</p>
-                    <form class ="buttgroupeprepair" action="' .'" method="post">
+                    '<article  >
+                    <div class ="lilbar '.$lilbar.'" ></div>
+                    <h2>  ' .$title.' </h2>
+                    <div class ="flex1">
+                    <span>duration:</span>
+                    <span>'.$duration.' hours</span>
+                    <br>
+                    <span>validity:</span>
+                    <span>'.$validity.' days</span>
+                    <br>
+                    <br>
+                    <span >'.$description.'</span>
+                    </div>
+                    <form class ="buttgroupeprepair"  method="post">
                     <input type="hidden" name="form_id" value="'.$tid. '"/>';
                 if($access){
                     echo'<button type="submit" class = "buttgroupe" name="jointraining">join Training</button>';
