@@ -60,7 +60,7 @@ if(isset($_POST["asktraining"])){
                 echo
                     '<article>
                     <div class ="lilbar activebar" ></div>
-                    <h2>  ' .$title.' </h2>
+                    <h3 class ="bigsmalltitle">  ' .$title.' </h3>
                     <div class ="flex1">
                     <span>duration:</span>
                     <span>'.$duration.' hours</span>
@@ -94,7 +94,7 @@ if(isset($_POST["asktraining"])){
                 echo
                     '<article  >
                     <div class ="lilbar '.$lilbar.'" ></div>
-                    <h2>  ' .$title.' </h2>
+                    <h3 class ="bigsmalltitle">  ' .$title.' </h3>
                     <div class ="flex1">
                     <span>duration:</span>
                     <span>'.$duration.' hours</span>

@@ -141,7 +141,9 @@ main h2 {
     display: flex;
     flex-direction: column;
 }
-
+.bigsmalltitle{
+    font-size: 2em;
+}
 .formBox form input, .submit {
     background-color: rgb(224, 224, 224);
     margin-top: 1.25rem;
@@ -324,6 +326,7 @@ footer {
 }
 
 .buttgroupe {
+    margin-bottom: 1em;
     border-radius:.2rem;
     font-family:Montserrat, sans-serif;
     font-weight:400;
