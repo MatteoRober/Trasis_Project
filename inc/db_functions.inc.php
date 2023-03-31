@@ -399,7 +399,6 @@ class Role {
  * @version 1.0
  */
 class RoleManagement {
-
     public function getRoleById($role_id, &$message){
         $result = null;
         $bdd    = null;

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $title = "Modify users";
 include 'inc/header.inc.php';
 
@@ -32,9 +32,11 @@ include 'inc/header.inc.php';
 
 require('inc/db_functions.inc.php');
 use Trasis\UserManagement;
+use Trasis\RoleManagement;
 
 //objects
 $userManagement = new UserManagement();
+$roleManagement = new RoleManagement();
 
 function checkIfUserExists($email){
     $message = "";
@@ -48,23 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['modify'])) {
         //you're here when clicking the modify button
         $user = checkIfUserExists($email);
-
         if($user != null){
             //fill in the form with the user's data
             $name = $user->__get('name');
             $surname = $user->__get('surname');
             $email = $user->__get('mail');
             $password = $user->__get('password');
-            $function_id = $user->__get('function_id');
-            if($function_id=1){
-                $role = "user";
-            } elseif($function_id=2){
-                $role = "manager";
-            } elseif($function_id=3){
-                $role = "training";
-            } elseif($function_id=4){
-                $role = "administrator";
-            }
             //show the form to modify the user data
             include 'inc/adminModifyUser.inc.php';
 

@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 require('inc/db_functions.inc.php');
 use Trasis\User;
 use Trasis\UserManagement;

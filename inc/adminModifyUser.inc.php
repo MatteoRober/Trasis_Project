@@ -1,8 +1,4 @@
 <?php
-
-$title = "Modify user";
-include 'inc/header.inc.php';
-
 //TODO: MODIFY USER DATA IN DB
 ?>
 
@@ -23,17 +19,13 @@ include 'inc/header.inc.php';
 
         <label for="role">Role:</label>
         <select id="role" name="role">
-            <option value="user" <?php if ($role == 'user') { echo 'selected'; } ?>>user</option>
-            <option value="manager" <?php if ($role == 'manager') { echo 'selected'; } ?>>Manager</option>
-            <option value="training-manager" <?php if ($role == 'training') { echo 'selected'; } ?>>Training Manager</option>
-            <option value="admin" <?php if ($role == 'administrator') { echo 'selected'; } ?>>Admin</option>
+            <option value="user">user</option>
+            <option value="manager" >Manager</option>
+            <option value="training-manager" >Training Manager</option>
+            <option value="admin">Admin</option>
         </select>
 
         <input type="submit" name="submit" id="addUser" value="Modify the user"> <!--TODO: via php send modifications to database -->
         <input type="button" id="cancel" value="Cancel" onclick="clearInputs()">
     </form>
 </div>
-
-<?php
-include 'inc/footer.inc.php'
-?>

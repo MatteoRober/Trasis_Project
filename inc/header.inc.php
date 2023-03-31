@@ -1,5 +1,6 @@
 <?php
 
+require ('inc/db_functions.inc.php');
 use Trasis\RoleManagement;
 use Trasis\UserManagement;
 $user = "";
