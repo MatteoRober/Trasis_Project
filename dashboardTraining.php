@@ -5,7 +5,7 @@ require('inc/db_functions.inc.php');
 
 use Trasis\TrainingManagement;
 
-if(!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) {
     header("location: login.php");
 }
 
@@ -17,7 +17,7 @@ $uid = $_SESSION['user'];
 ?>
     <main>
         <h1>Training courses</h1>
-        <?php include 'inc/dashboardNav.inc.php';?>
+        <?php include 'inc/dashboardNav.inc.php'; ?>
         <table>
             <tr>
                 <th>Title</th>
