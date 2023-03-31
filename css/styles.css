@@ -386,9 +386,48 @@ footer {
     margin-bottom: 1.5em;
 }
 
-
+.goog-te-banner-frame{
+    visibility:hidden !important;
+}
 
 .VIpgJd-ZVi9od-ORHb-OEVmcd {
     display:none;
 }
 
+#body-main{
+    top:0 !important;
+}
+
+/*------------------------------------- Dashboard ------------------------------------*/
+
+.nav-dashboard {
+    margin: 0 0 3em 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.infos-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    border: 0.1875em  solid
+}
+
+.infos-table th {
+    color: white;
+}
+
+.infos-table td, .infos-table th, .infos-table button {
+    padding: 1em 0.7em
+}
+
+.infos-table tr:nth-child( 1 ) {
+    background-color: rgb(0, 40, 76);
+}
+
+.infos-table tr:nth-child( 2n ) {
+    background-color: rgba(86, 119, 154, 0.3)
+}

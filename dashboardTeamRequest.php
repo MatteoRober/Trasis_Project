@@ -7,6 +7,8 @@ use Trasis\TrainingManagement;
 use Trasis\TeamManagement;
 use Trasis\LogsManagement;
 use Trasis\TrainingStatus;
+use Trasis\TrainingStatusManagement;
+use Trasis\UserManagement;
 
 if(!isset($_SESSION['user'])) {
     header("location: login.php");
@@ -39,7 +41,7 @@ if(isset($_POST["refuse"])){
     <main>
         <h1>Team requests</h1>
         <?php include 'inc/dashboardNav.inc.php';?>
-        <table>
+        <table class="infos-table">
             <tr>
                 <th>Title</th>
                 <th>Description</th>
@@ -55,10 +57,10 @@ if(isset($_POST["refuse"])){
                 echo '<tr>';
                 $trainings = $trainingManager->getNotApprovedTrainingsForUserWithId($member->__GET('user_id'), $message);
                 foreach ($trainings as $training) {
-                    '<td>' . $training->__GET("name") . '</td><br>
-                     <td>' . $training->__GET("description") . '</td><br>
-                     <td>' . $training->__GET("duration") . '</td><br>
-                     <td>' . $member->__GET("surname") . '</td><br>
+                    '<td>' . $training->__GET("name") . '</td>
+                     <td>' . $training->__GET("description") . '</td>
+                     <td>' . $training->__GET("duration") . '</td>
+                     <td>' . $member->__GET("surname") . '</td>
                      <!--todo implement accept or refuse a training for a team member-->
                      <td><form action="" method="post">
                          <button type="submit" name="accept" value="accept">Accept</button>

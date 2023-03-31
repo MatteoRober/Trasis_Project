@@ -13,7 +13,7 @@ include 'inc/header.inc.php';
 <main>
     <h1>Expiring training courses</h1>
     <?php include 'inc/dashboardNav.inc.php';?>
-    <table>
+    <table class="infos-table">
         <tr>
             <th>Title</th>
             <th>Duration</th>
@@ -31,11 +31,11 @@ include 'inc/header.inc.php';
             echo '<tr>';
             $completionDate = $trainingManager->getCompletionDate($training->__GET("training_id"), $uid, $message);
             $duration = $training->__GET("duration");
-            echo '<td>' . $training->__GET("name") . '</td><br>
-                  <td>' . $duration . '</td><br>
-                  <td>' . $training->__GET("validity") . '</td><br>
-                  <td>' . $completionDate . '</td><br>
-                  <td>' . strtotime($completionDate. '+'.$duration .'months') . '</td><br>';
+            echo '<td>' . $training->__GET("name") . '</td>
+                  <td>' . $duration . ' month(s)</td>
+                  <td>' . $training->__GET("validity") . '</td>
+                  <td>02/01/2023</td>
+                  <td>02/04/2023</td>';
             echo '</tr>';
         }
         ?>

@@ -197,6 +197,26 @@ class Training {
 class TrainingManagement
 {
 
+    public function getAccreditationTrainings ($accreditation_id, $message) {
+        $result = array();
+        $bdd = null;
+        try {
+            $bdd = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_training tt
+                                        JOIN represents r ON r.training_id = tt.training_id
+                                        JOIN trasis_accreditation ta ON r.accreditation_id = ta.accreditation_id
+                                        WHERE ta.accreditation_id = :accreditation_id");
+            $stmt->bindValue(':accreditation_id', $accreditation_id);
+            if ($stmt->execute()) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Training");
+            }
+        } catch (Exception $e) {
+            $message .= $e->getMessage() . '<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
+
     public function existsInDB($training_id, &$message)
     {
         $result = false;
@@ -442,6 +462,7 @@ class Team {
  * @version 1.0
  */
 class TeamManagement {
+
     public function getTeamMembers ($user_id, $message) {
         $result = array();
         $bdd = null;
@@ -638,9 +659,11 @@ class LogsManagement{
         return $message;
     }
 }
-class Accreditation{
+class Accreditation {
+
     private $accreditation_id;
     private $name;
+
     public function __get($prop){
         return $this->$prop;
     }
@@ -649,6 +672,25 @@ class Accreditation{
     }
 }
 class AccreditationManager{
+
+    function getAllAccreditations($message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT * FROM trasis_accreditation");
+            if ($stmt->execute()){
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Accreditation");
+            } else {
+                $message .= 'An error has occured.<br> Please try again later or try to contact the administrator of the website (Error code E: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+    }
 
     function getUserAccreditations($uid,$message){
         $result = null;
