@@ -60,7 +60,7 @@ if(isset($_POST["refuse"])){
                      <td>' . $training->__GET("duration") . '</td><br>
                      <td>' . $member->__GET("surname") . '</td><br>
                      <!--todo implement accept or refuse a training for a team member-->
-                     <td><form>
+                     <td><form action="" method="post">
                          <button type="submit" name="accept" value="accept">Accept</button>
                          <button type="submit" name="refuse" value="refuse">Refuse</button>
                          </form>
