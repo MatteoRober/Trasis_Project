@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+require('inc/db_functions.inc.php');
+
+if(!isset($_SESSION['user'])) {
+    header("location: login.php");
+}
+
 $title = 'Summary completed courses';
 include 'inc/header.inc.php';
 ?>

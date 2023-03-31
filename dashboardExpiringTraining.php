@@ -22,13 +22,13 @@ include 'inc/header.inc.php';
             <th>Expiration date</th>
         </tr>
         <?php
-        $uid = $_SESSION['user_id'];
+        $uid = $_SESSION['user'];
         $trainingManager = new TrainingManagement();
         $trainings = $trainingManager->getDoneTrainingsForUserWithId($uid, $message);
         //For each course the user have completed and have an expiration date, display the course details in a table row
-        echo '<tr>';
         $message = "";
         foreach ($trainings as $training) {
+            echo '<tr>';
             $completionDate = $trainingManager->getCompletionDate($training->__GET("training_id"), $uid, $message);
             $duration = $training->__GET("duration");
             echo '<td>' . $training->__GET("name") . '</td><br>
@@ -36,8 +36,8 @@ include 'inc/header.inc.php';
                   <td>' . $training->__GET("validity") . '</td><br>
                   <td>' . $completionDate . '</td><br>
                   <td>' . strtotime($completionDate. '+'.$duration .'months') . '</td><br>';
+            echo '</tr>';
         }
-        echo '</tr>';
         ?>
     </table>
 </main>
