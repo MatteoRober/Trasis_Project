@@ -37,8 +37,10 @@ if(isset($_POST["asktraining"])){
     $lm = new LogsManagement();
     $lm->addlog("user asked training: ".$user->__get('mail')." for group id:".$_POST["form_id"],$error);
 }
+
 ?>
 <main>
+
     <h1>Trainings</h1>
     <h2 class ="centered_titles push_top">My Trainings</h2>
     <div class = "trainings_form">
@@ -104,6 +106,8 @@ if(isset($_POST["asktraining"])){
             ?>
         </section>
     </div>
+
+
 </main>
 <?php
 include 'inc/footer.inc.php';

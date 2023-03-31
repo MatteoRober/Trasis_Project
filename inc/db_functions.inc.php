@@ -74,7 +74,7 @@ class UserManagement {
         $bdd    = null;
         try {
             $bdd  = DBLink::connect2db(MYDB, $message);
-            $stmt = $bdd->prepare("SELECT * FROM nd5_utilisateurs WHERE uid = :uid;");
+            $stmt = $bdd->prepare("SELECT * FROM trasis_user WHERE user_id = :uid;");
             $stmt->bindValue(':uid', $uid);
             if ($stmt->execute()){
                 $result = $stmt->fetchObject("Trasis\User");
@@ -572,5 +572,41 @@ class LogsManagement{
         }
         DBLink::disconnect($bdd);
         return $message;
+    }
+}
+class Accreditation{
+    private $accreditation_id;
+    private $name;
+    public function __get($prop){
+        return $this->$prop;
+    }
+    public function __set($prop, $val){
+        $this->$prop = $val;
+    }
+}
+class AccreditationManager{
+    function getUserAccreditations($uid,$message){
+        $result = null;
+        $bdd    = null;
+        try {
+            $bdd  = DBLink::connect2db(MYDB, $message);
+            $stmt = $bdd->prepare("SELECT trasis_accreditation.accreditation_id,trasis_accreditation.name FROM trasis_accreditation
+                                        JOIN proves on proves.accreditation_id = trasis_accreditation.accreditation_id
+                                        JOIN trasis_user 
+                                        on proves.user_id = trasis_user.user_id
+                                        WHERE trasis_user.user_id = :uid");
+            $stmt->bindValue(":uid",$uid);
+            if ($stmt->execute()){
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Trasis\Accreditation");
+            } else {
+                $message .= 'Une erreur système est survenue.<br> Veuillez essayer à nouveau plus tard ou contactez l\'administrateur du site. (Code erreur: ' . $stmt->errorCode() . ')<br>';
+            }
+            $stmt = null;
+        } catch (Exception $e) {
+            $message .= $e->getMessage().'<br>';
+        }
+        DBLink::disconnect($bdd);
+        return $result;
+
     }
 }
