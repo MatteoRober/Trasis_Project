@@ -59,7 +59,7 @@ include 'inc/header.inc.php';
     <div class="loginBackground"></div>
     <div class="formBox">
         <img class="loginFormLogo" src="pics/trasis_icon.png" alt="Logo trasis">
-        <h1>Log in into Trasis LMS</h1>
+        <h1>Connexion - Trasis LMS</h1>
         <form  action="<?php echo htmlentities($_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']); ?>" method="post">
             <label for="mail" hidden>Mail</label>
             <input type="email" name="mail" id="mail" placeholder="Mail" autocomplete="off" value="<?php echo $mail ?>">

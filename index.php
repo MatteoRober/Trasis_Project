@@ -19,23 +19,6 @@ $noError = true;
 $userManagement = new UserManagement();
 $user = new User();
 
-// mail
-/*if(isset($_POST['validation'])) {
-    $email = new PHPMailer(true);
-    try {
-        $email->CharSet = 'UTF-8';
-        $email->setFrom('no-reply@trasis.be');
-        $email->addAddress("n.docquier@student.helmo.be");
-        $email->addReplyTo('no-reply@trasis.be');
-        $email->isHTML(true);
-        $email->Subject = 'Account Test';
-        $email->Body = "Your account was created :<br><br> Just kidding";
-        $email->send();
-    } catch(Exception $e) {
-        $message .= "Error while sending the email : " . $email->ErrorInfo;
-    }
-}*/
-
 $title = "Home";
 include 'inc/header.inc.php';
 
